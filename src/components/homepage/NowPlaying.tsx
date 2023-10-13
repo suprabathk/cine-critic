@@ -34,7 +34,7 @@ const NowPlaying = () => {
           direction="row"
           overflow="auto"
           marginRight="-3rem"
-          paddingBottom="1rem"
+          paddingBottom="0.5rem"
           gap={2}
           className={`${commonStyles.customScrollbar}`}
         >
