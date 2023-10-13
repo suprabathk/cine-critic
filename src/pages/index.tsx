@@ -2,13 +2,23 @@ import Head from "next/head";
 import { Lexend_Deca } from "next/font/google";
 import MyAppBar from "@/components/common/AppBar";
 import NowPlaying from "@/components/homepage/NowPlaying";
-import CommonStyles from "@/styles/common.module.css";
-import { Box, Container } from "@mui/material";
+import { Box, CircularProgress, Container, Skeleton } from "@mui/material";
 import Discover from "@/components/homepage/Discover";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 const lexend_Deca = Lexend_Deca({ subsets: ["latin"] });
 
 export default function Home() {
+  const router = useRouter();
+  const [authorized, setAuthorized] = useState(false);
+
+  useEffect(() => {
+    !localStorage.getItem("authToken")
+      ? router.push("/auth")
+      : setAuthorized(true);
+  }, [router]);
+
   return (
     <>
       <Head>
@@ -18,11 +28,25 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${lexend_Deca.className}`}>
-        <MyAppBar />
-        <Box paddingLeft="3rem" paddingRight="3rem">
-          <NowPlaying />
-          <Discover />
-        </Box>
+        {authorized ? (
+          <>
+            <MyAppBar />
+            <Box paddingLeft="3rem" paddingRight="3rem">
+              <NowPlaying />
+              <Discover />
+            </Box>
+          </>
+        ) : (
+          <Box
+            minHeight="100vh"
+            width="100vw"
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <CircularProgress color="error" />
+          </Box>
+        )}
       </main>
     </>
   );
