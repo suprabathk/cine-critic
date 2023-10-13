@@ -1,12 +1,9 @@
 import { withFormik, FormikProps } from "formik";
 import authStyles from "@/styles/auth.module.css";
-import { Space_Grotesk } from "next/font/google";
 import * as Yup from "yup";
 import Link from "next/link";
 import { signIn } from "@/utils/auth-utils";
 import { NextRouter } from "next/router";
-
-const space_Grotesk = Space_Grotesk({ subsets: ["latin"] });
 
 interface FormValues {
   username: string;
@@ -35,7 +32,7 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
 
   return (
     <form className={authStyles.authForm} onSubmit={handleSubmit}>
-      <h2 className={`${space_Grotesk.className} ${authStyles.authHeading}`}>
+      <h2 className={authStyles.authHeading}>
         Welcome back to <br />
         <Link href="/" className={authStyles.logoText}>
           CineCritic

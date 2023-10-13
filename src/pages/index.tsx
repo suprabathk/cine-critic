@@ -1,13 +1,10 @@
 import Head from "next/head";
-import { Lexend_Deca } from "next/font/google";
 import MyAppBar from "@/components/common/AppBar";
 import NowPlaying from "@/components/homepage/NowPlaying";
 import { Box, CircularProgress, Container, Skeleton } from "@mui/material";
 import Discover from "@/components/homepage/Discover";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-
-const lexend_Deca = Lexend_Deca({ subsets: ["latin"] });
 
 export default function Home() {
   const router = useRouter();
@@ -27,7 +24,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={`${lexend_Deca.className}`}>
+      <main>
         {authorized ? (
           <>
             <MyAppBar />

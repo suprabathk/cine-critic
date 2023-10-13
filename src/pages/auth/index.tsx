@@ -1,11 +1,9 @@
 import authStyles from "@/styles/auth.module.css";
-import { Lexend_Deca } from "next/font/google";
 import SignInForm from "@/components/auth/SignInForm";
 import { useEffect, useState } from "react";
 import { getAuthToken } from "@/utils/auth-utils";
 import { useRouter } from "next/router";
-
-const lexend_Deca = Lexend_Deca({ subsets: ["latin"] });
+import { Chip, Stack, Typography } from "@mui/material";
 
 const Signin = () => {
   const router = useRouter();
@@ -16,16 +14,18 @@ const Signin = () => {
   }, []);
 
   return (
-    <div className={authStyles.authDiv + " " + lexend_Deca.className}>
+    <Stack direction="row" height="100vh">
       <div className={authStyles.authInfo}>
-        <span className={authStyles.featureBubble}>Movies, Shows and more</span>
+        <Chip label="Movies, Shows and more" color="error" size="small" />
         <h3 className={authStyles.featureTitle}>
           Delivering movie reviews around the globe.
         </h3>
-        <p>Get the live reviews and latest news about Movies, Shows.</p>
+        <Typography component="p">
+          Get the live reviews and latest news about Movies, Shows.
+        </Typography>
       </div>
       <SignInForm authToken={authToken} router={router} />
-    </div>
+    </Stack>
   );
 };
 

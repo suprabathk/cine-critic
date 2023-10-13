@@ -1,10 +1,3 @@
-.authDiv {
-  display: flex;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-}
-
 .authHeading {
   font-size: 3rem;
   margin: 0;
@@ -114,20 +107,6 @@
   .authInfo {
     display: flex;
   }
-}
-
-.featureBubble {
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  align-self: flex-start;
-  border-radius: 9999px;
-  width: fit-content;
-  font-size: 0.75rem;
-  line-height: 1rem;
-  background-color: #ffffff;
-  color: #b91c1c;
 }
 
 .featureTitle {

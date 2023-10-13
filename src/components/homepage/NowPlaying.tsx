@@ -5,9 +5,6 @@ import { Movie } from "@/types/movies";
 import Grid from "@mui/material/Grid";
 import { Stack, Typography } from "@mui/material";
 import commonStyles from "@/styles/common.module.css";
-import { Lexend_Deca } from "next/font/google";
-
-const lexend_Deca = Lexend_Deca({ subsets: ["latin"] });
 
 const NowPlaying = () => {
   const nowPlayingQuery = useQuery({
@@ -25,7 +22,6 @@ const NowPlaying = () => {
         fontSize="1.5rem;"
         color="inherit"
         marginBottom="0.5rem"
-        className={lexend_Deca.className}
       >
         Now playing
       </Typography>

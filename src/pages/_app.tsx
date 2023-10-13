@@ -3,10 +3,16 @@ import type { AppProps } from "next/app";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
+import { Lato } from "next/font/google";
+
+const lato = Lato({ subsets: ["latin"], weight: "400" });
 
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
+  },
+  typography: {
+    fontFamily: lato.style.fontFamily,
   },
 });
 

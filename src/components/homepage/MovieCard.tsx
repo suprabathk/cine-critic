@@ -3,14 +3,11 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Avatar, CardActionArea, Rating, Stack } from "@mui/material";
+import { CardActionArea, Rating, Stack } from "@mui/material";
 import Chip from "@mui/material/Chip";
 import { Movie } from "@/types/movies";
-import { Lexend_Deca } from "next/font/google";
 import movie from "@/styles/movie.module.css";
 import { CalendarMonthOutlined } from "@mui/icons-material";
-
-const lexend_Deca = Lexend_Deca({ subsets: ["latin"] });
 
 export default function ActionAreaCard(props: { movie: Movie }) {
   const {
@@ -46,7 +43,6 @@ export default function ActionAreaCard(props: { movie: Movie }) {
             marginBottom={0}
             fontWeight={400}
             fontSize="1.2rem"
-            className={lexend_Deca.className}
           >
             {title}
           </Typography>
@@ -56,7 +52,6 @@ export default function ActionAreaCard(props: { movie: Movie }) {
             whiteSpace="nowrap"
             overflow="hidden"
             textOverflow="ellipsis"
-            className={lexend_Deca.className}
           >
             {overview}
           </Typography>
