@@ -24,7 +24,7 @@ export default function ActionAreaCard(props: { movie: Movie }) {
   } = props.movie;
 
   return (
-    <Card sx={{ maxWidth: 350 }} className={movie.movieCard}>
+    <Card sx={{ maxWidth: 370 }} className={movie.movieCard}>
       <CardActionArea>
         <CardMedia
           component="img"
@@ -73,7 +73,7 @@ export default function ActionAreaCard(props: { movie: Movie }) {
               style={{ marginTop: "1rem" }}
             />
             <Stack direction="row">
-              <Rating value={vote_average / 2} />
+              <Rating value={vote_average / 2} readOnly />
               <Chip label={vote_count} size="small" />
             </Stack>
           </Stack>

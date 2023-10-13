@@ -2,9 +2,8 @@ import Head from "next/head";
 import { Lexend_Deca } from "next/font/google";
 import MyAppBar from "@/components/common/AppBar";
 import NowPlaying from "@/components/homepage/NowPlaying";
-
 import CommonStyles from "@/styles/common.module.css";
-import { Container } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import Discover from "@/components/homepage/Discover";
 
 const lexend_Deca = Lexend_Deca({ subsets: ["latin"] });
@@ -20,10 +19,10 @@ export default function Home() {
       </Head>
       <main className={`${lexend_Deca.className}`}>
         <MyAppBar />
-        <div className={CommonStyles.mainDiv}>
+        <Box paddingLeft="3rem" paddingRight="3rem">
           <NowPlaying />
           <Discover />
-        </div>
+        </Box>
       </main>
     </>
   );
