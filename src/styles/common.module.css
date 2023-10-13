@@ -1,0 +1,29 @@
+.logoText {
+  color: #dc2626;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.mainDiv {
+  padding-left: 3rem;
+  padding-right: 3rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: #f5f5f5f5;
+}
+
+.customScrollbar::-webkit-scrollbar-track {
+  border-radius: 8px;
+  background-color: #cbcbcb;
+}
+
+.customScrollbar::-webkit-scrollbar {
+  height: 6px;
+  background-color: #f5f5f5;
+}
+
+.customScrollbar::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #555;
+}

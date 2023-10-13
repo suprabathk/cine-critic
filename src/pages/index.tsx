@@ -1,7 +1,12 @@
 import Head from "next/head";
-import { Inter } from "next/font/google";
+import { Lexend_Deca } from "next/font/google";
+import MyAppBar from "@/components/common/AppBar";
+import NowPlaying from "@/components/homepage/NowPlaying";
 
-const inter = Inter({ subsets: ["latin"] });
+import CommonStyles from "@/styles/common.module.css";
+import { Container } from "@mui/material";
+
+const lexend_Deca = Lexend_Deca({ subsets: ["latin"] });
 
 export default function Home() {
   return (
@@ -12,7 +17,12 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={inter.className}>Test</main>
+      <main className={`${lexend_Deca.className}`}>
+        <MyAppBar />
+        <div className={CommonStyles.mainDiv}>
+          <NowPlaying />
+        </div>
+      </main>
     </>
   );
 }

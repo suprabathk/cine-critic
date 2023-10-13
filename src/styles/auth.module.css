@@ -1,0 +1,154 @@
+.authDiv {
+  display: flex;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.authHeading {
+  font-size: 3rem;
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
+  line-height: 3rem;
+}
+
+.authForm {
+  display: flex;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: #000;
+  width: 100%;
+}
+
+.logoText {
+  color: #dc2626;
+  text-decoration: none;
+}
+
+.authDescription {
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+
+  color: #c7cbd4;
+}
+
+.formInput {
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+.formLabel {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  color: #c7cbd4;
+}
+
+.formTextInput {
+  display: block;
+  padding: 0.625rem;
+  border-style: solid;
+  border-radius: 0.5rem;
+  border-width: 1px;
+  border-color: #404041;
+  width: 100%;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: #cbcccd;
+  background-color: #1e1f1f;
+}
+
+.formSubmitButton {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  color: #ffffff;
+  background-color: #dc2626;
+  transition-property: color, background-color, border-color,
+    text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+@media (min-width: 768px) {
+  .formSubmitButton {
+    width: fit-content;
+  }
+}
+
+.formSubmitButton:hover {
+  background-color: #b91c1c;
+}
+
+.authInfo {
+  background-repeat: no-repeat;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url("https://www.usatoday.com/gcdn/-mm-/5c8bf163d61d56de560dacb3f845b9116f1adc6e/c=118-0-2003-1414/local/-/media/2020/06/25/USATODAY/usatsports/MotleyFool-TMOT-f0520a3d-fb034e8d.jpg");
+  background-position: center center;
+  background-size: cover;
+  display: none;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+  padding-left: 6rem;
+  padding-right: 6rem;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: start;
+  color: #ffffff;
+  width: 50%;
+}
+
+@media (min-width: 768px) {
+  .authInfo {
+    display: flex;
+  }
+}
+
+.featureBubble {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  align-self: flex-start;
+  border-radius: 9999px;
+  width: fit-content;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  background-color: #ffffff;
+  color: #b91c1c;
+}
+
+.featureTitle {
+  margin: 0;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 600;
+}
+
+.authInfo p {
+  margin: 0;
+  padding: 0;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 300;
+}
+
+.formErrorMessage {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: #ef4444;
+}
