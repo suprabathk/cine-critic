@@ -5,6 +5,7 @@ import NowPlaying from "@/components/homepage/NowPlaying";
 
 import CommonStyles from "@/styles/common.module.css";
 import { Container } from "@mui/material";
+import Discover from "@/components/homepage/Discover";
 
 const lexend_Deca = Lexend_Deca({ subsets: ["latin"] });
 
@@ -21,6 +22,7 @@ export default function Home() {
         <MyAppBar />
         <div className={CommonStyles.mainDiv}>
           <NowPlaying />
+          <Discover />
         </div>
       </main>
     </>

@@ -53,3 +53,16 @@ const getNowPlayingMoviesListOptions = {
 export const getNowPlayingMoviesList = async () => {
   return (await axios.request(getNowPlayingMoviesListOptions)).data;
 };
+
+const getDiscoverOptions = {
+  method: "GET",
+  url: "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc",
+  headers: {
+    accept: "application/json",
+    Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_API_READ_ACCESS_TOKEN}`,
+  },
+};
+
+export const getDiscoverList = async () => {
+  return (await axios.request(getDiscoverOptions)).data;
+};

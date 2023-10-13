@@ -12,7 +12,7 @@ const lexend_Deca = Lexend_Deca({ subsets: ["latin"] });
 export default function ActionAreaCard(props: { movie: Movie }) {
   const { title, overview, poster_path } = props.movie;
   return (
-    <Card sx={{ maxWidth: 300 }}>
+    <Card sx={{ maxWidth: 350 }}>
       <CardActionArea>
         <CardMedia
           component="img"
