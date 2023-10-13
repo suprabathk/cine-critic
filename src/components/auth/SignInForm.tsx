@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import Link from "next/link";
 import { signIn } from "@/utils/auth-utils";
 import { NextRouter } from "next/router";
+import { Button } from "@mui/material";
 
 interface FormValues {
   username: string;
@@ -77,8 +78,9 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
           value={values.password}
         />
       </div>
-      <button
-        className={authStyles.formSubmitButton}
+      <Button
+        variant="contained"
+        color="error"
         type="submit"
         disabled={
           isSubmitting ||
@@ -87,7 +89,7 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
         }
       >
         Sign in
-      </button>
+      </Button>
     </form>
   );
 };

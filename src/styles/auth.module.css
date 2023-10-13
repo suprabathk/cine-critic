@@ -57,7 +57,7 @@
   background-color: #1e1f1f;
 }
 
-.formSubmitButton {
+/* .formSubmitButton {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   padding-left: 1.5rem;
@@ -83,7 +83,7 @@
 
 .formSubmitButton:hover {
   background-color: #b91c1c;
-}
+} */
 
 .authInfo {
   background-repeat: no-repeat;
@@ -109,12 +109,12 @@
   }
 }
 
-.featureTitle {
+/* .featureTitle {
   margin: 0;
   font-size: 1.875rem;
   line-height: 2.25rem;
   font-weight: 600;
-}
+} */
 
 .authInfo p {
   margin: 0;

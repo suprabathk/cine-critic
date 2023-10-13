@@ -17,9 +17,15 @@ const Signin = () => {
     <Stack direction="row" height="100vh">
       <div className={authStyles.authInfo}>
         <Chip label="Movies, Shows and more" color="error" size="small" />
-        <h3 className={authStyles.featureTitle}>
+        <Typography
+          variant="h3"
+          component="h3"
+          fontSize="1.85rem"
+          lineHeight="2.25rem"
+          fontWeight="600"
+        >
           Delivering movie reviews around the globe.
-        </h3>
+        </Typography>
         <Typography component="p">
           Get the live reviews and latest news about Movies, Shows.
         </Typography>
