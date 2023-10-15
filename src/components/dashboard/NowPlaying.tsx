@@ -1,7 +1,7 @@
-import { getNowPlayingMoviesList } from "@/utils/auth-utils";
+import { getNowPlayingMoviesList } from "@/utils/movie-utils";
 import { useQuery, useQueryClient } from "react-query";
-import MovieCard from "@/components/homepage/MovieCard";
-import { Movie } from "@/types/movies";
+import MovieCard from "@/components/dashboard/MovieCard";
+import { MoviePreview } from "@/types/movies";
 import Grid from "@mui/material/Grid";
 import { Stack, Typography } from "@mui/material";
 import commonStyles from "@/styles/common.module.css";
@@ -34,7 +34,7 @@ const NowPlaying = () => {
           gap={2}
           className={`${commonStyles.customScrollbar}`}
         >
-          {nowPlayingQuery.data.results.map((movie: Movie) => (
+          {nowPlayingQuery.data.results.map((movie: MoviePreview) => (
             <Grid key={movie.id}>
               <MovieCard movie={movie} />
             </Grid>

@@ -12,7 +12,12 @@ const MyAppBar = () => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" color="default" elevation={0}>
+      <AppBar
+        position="static"
+        color="transparent"
+        elevation={0}
+        sx={{ backdropFilter: "blur(30px)" }}
+      >
         <Toolbar>
           <Container>
             <Logo />

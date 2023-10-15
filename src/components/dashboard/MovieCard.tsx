@@ -5,11 +5,13 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea, Rating, Stack } from "@mui/material";
 import Chip from "@mui/material/Chip";
-import { Movie } from "@/types/movies";
+import { MoviePreview } from "@/types/movies";
 import movie from "@/styles/movie.module.css";
 import { CalendarMonthOutlined } from "@mui/icons-material";
+import { useRouter } from "next/router";
 
-export default function ActionAreaCard(props: { movie: Movie }) {
+export default function ActionAreaCard(props: { movie: MoviePreview }) {
+  const router = useRouter();
   const {
     title,
     overview,
@@ -22,7 +24,9 @@ export default function ActionAreaCard(props: { movie: Movie }) {
 
   return (
     <Card sx={{ maxWidth: 370 }} className={movie.movieCard}>
-      <CardActionArea>
+      <CardActionArea
+        onClick={() => router.push(`/dashboard/${props.movie.id}`)}
+      >
         <CardMedia
           component="img"
           height="140"

@@ -1,7 +1,7 @@
-import { getDiscoverList } from "@/utils/auth-utils";
+import { getDiscoverList } from "@/utils/movie-utils";
 import { useQuery } from "react-query";
-import MovieCard from "@/components/homepage/MovieCard";
-import { Movie } from "@/types/movies";
+import MovieCard from "@/components/dashboard/MovieCard";
+import { MoviePreview } from "@/types/movies";
 import Grid from "@mui/material/Grid";
 import { Typography } from "@mui/material";
 
@@ -26,7 +26,7 @@ const Discover = () => {
       </Typography>
       {!discoverQuery.isLoading && (
         <Grid container justifyContent="space-between" gap={2}>
-          {discoverQuery.data.results.map((movie: Movie) => (
+          {discoverQuery.data.results.map((movie: MoviePreview) => (
             <Grid key={movie.id}>
               <MovieCard movie={movie} />
             </Grid>

@@ -1,8 +1,7 @@
 import Head from "next/head";
-import MyAppBar from "@/components/common/AppBar";
-import NowPlaying from "@/components/homepage/NowPlaying";
-import { Box, CircularProgress, Container, Skeleton } from "@mui/material";
-import Discover from "@/components/homepage/Discover";
+import NowPlaying from "@/components/dashboard/NowPlaying";
+import { Box, CircularProgress } from "@mui/material";
+import Discover from "@/components/dashboard/Discover";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
