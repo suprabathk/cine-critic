@@ -17,6 +17,8 @@ import { getReviews } from "@/utils/review-utils";
 import MovieOverview from "@/components/movie/MovieOverView";
 import MovieReview from "@/components/movie/MovieReview";
 import { useState, useEffect } from "react";
+import { MoviesSkeleton } from "@/loadingSkeletons/dashboard";
+import MoviePageSkeleton from "@/loadingSkeletons/moviePage";
 
 const MoviePageContent = ({ movieID }: { movieID: string }) => {
   const movieQuery = useQuery({
@@ -43,7 +45,8 @@ const MoviePageContent = ({ movieID }: { movieID: string }) => {
           </Link>
           <Typography color="text.primary">{movieQuery.data?.title}</Typography>
         </Breadcrumbs>
-        {movieID && !movieQuery.isFetching && !reviewsQuery.isFetching ? (
+        {movieID && !movieQuery.isLoading && !reviewsQuery.isLoading ? (
+          // {false ? (
           <Grid marginTop="2rem" container>
             <Grid item xs={12} sm={3}>
               <MovieInfo movie={movieQuery.data!} />
@@ -59,7 +62,7 @@ const MoviePageContent = ({ movieID }: { movieID: string }) => {
             </Grid>
           </Grid>
         ) : (
-          <CircularProgress />
+          <MoviePageSkeleton />
         )}
       </Box>
     </div>
