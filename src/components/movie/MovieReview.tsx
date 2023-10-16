@@ -76,7 +76,7 @@ const MovieReview = ({
   return (
     <>
       <Stack direction="row" justifyContent="space-between" alignItems="end">
-        <Typography variant="h4" marginTop="1rem">
+        <Typography variant="h4" marginTop="1.5rem">
           Reviews
         </Typography>
         <Button
@@ -100,7 +100,7 @@ const MovieReview = ({
                 >
                   <Box>
                     <Typography variant="h5">{review.title}</Typography>
-                    <Typography variant="subtitle2">
+                    <Typography variant="subtitle2" marginBottom="1rem">
                       {review.description}
                     </Typography>
                     <Rating size="medium" value={review.rating!} readOnly />
