@@ -1,10 +1,11 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import { QueryClient, QueryClientProvider } from "react-query";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 import { Lato } from "next/font/google";
 import MyAppBar from "@/components/common/AppBar";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const lato = Lato({ subsets: ["latin"], weight: "400" });
 
@@ -25,6 +26,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
       <QueryClientProvider client={queryClient}>
         {router.pathname.startsWith("/dashboard") && <MyAppBar />}
         <Component {...pageProps} />
+        <ReactQueryDevtools initialIsOpen={false} />
         <CssBaseline enableColorScheme />
       </QueryClientProvider>
     </ThemeProvider>

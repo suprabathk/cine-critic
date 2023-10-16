@@ -25,6 +25,8 @@ const getDiscoverOptions = {
 };
 
 export const getDiscoverList = async () => {
+  console.log("hiihi");
+
   return (await axios.request(getDiscoverOptions)).data;
 };
 

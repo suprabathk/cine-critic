@@ -1,5 +1,5 @@
 import { getDiscoverList } from "@/utils/movie-utils";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import MovieCard from "@/components/dashboard/MovieCard";
 import { MoviePreview } from "@/types/movies";
 import Grid from "@mui/material/Grid";

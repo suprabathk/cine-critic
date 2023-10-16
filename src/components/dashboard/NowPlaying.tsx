@@ -1,9 +1,9 @@
 import { getNowPlayingMoviesList } from "@/utils/movie-utils";
-import { useQuery, useQueryClient } from "react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import MovieCard from "@/components/dashboard/MovieCard";
 import { MoviePreview } from "@/types/movies";
 import Grid from "@mui/material/Grid";
-import { Stack, Typography } from "@mui/material";
+import { CircularProgress, Stack, Typography } from "@mui/material";
 import commonStyles from "@/styles/common.module.css";
 
 const NowPlaying = () => {

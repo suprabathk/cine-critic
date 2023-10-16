@@ -3,22 +3,18 @@ import { getMovieDetails } from "@/utils/movie-utils";
 import {
   Box,
   Breadcrumbs,
-  Card,
-  Chip,
-  Rating,
+  CircularProgress,
   Stack,
   Typography,
 } from "@mui/material";
 import { useRouter } from "next/router";
-import { useQuery } from "react-query";
-
+import { useQuery } from "@tanstack/react-query";
 import movieStyles from "@/styles/movie.module.css";
-import {
-  AccessAlarm,
-  CalendarMonthOutlined,
-  People,
-} from "@mui/icons-material";
 import Link from "next/link";
+import MovieInfo from "@/components/movie/MovieInfo";
+import { getReviews } from "@/utils/review-utils";
+import MovieOverview from "@/components/movie/MovieOverView";
+import MovieReview from "@/components/movie/MovieReview";
 
 const MoviePage = () => {
   const router = useRouter();
@@ -27,8 +23,14 @@ const MoviePage = () => {
     : router.query.movieID;
 
   const movieQuery = useQuery({
-    queryFn: () => getMovieDetails(movieID ?? ""),
-    queryKey: ["movie"],
+    queryFn: async ({ queryKey }) => await getMovieDetails(queryKey[1]),
+    queryKey: ["movie", movieID ?? ""],
+    enabled: !!movieID,
+  });
+
+  const reviewsQuery = useQuery({
+    queryFn: async ({ queryKey }) => await getReviews(queryKey[1]),
+    queryKey: ["reviews", movieID ?? ""],
     enabled: !!movieID,
   });
 
@@ -39,80 +41,24 @@ const MoviePage = () => {
       //   backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url(${process.env.NEXT_PUBLIC_TMDB_API_IMAGES}/${movieQuery.data?.backdrop_path})`,
       // }}
     >
-      <Box>
+      <Box marginTop="2rem">
         <Breadcrumbs aria-label="breadcrumb" separator=">">
           <Link color="inherit" href="/dashboard">
             Home
           </Link>
           <Typography color="text.primary">{movieQuery.data?.title}</Typography>
         </Breadcrumbs>
-        <Stack direction="row" marginTop="1rem">
-          <Stack maxWidth="23vw" alignItems="center" justifyContent="center">
-            <img
-              src={`${process.env.NEXT_PUBLIC_TMDB_API_IMAGES}/${movieQuery.data?.poster_path}`}
-              alt="poster"
-              className={movieStyles.posterDiv}
-            />
-            <Typography
-              variant="h5"
-              fontWeight="600"
-              textAlign="center"
-              marginTop="1rem"
-              lineHeight="1.5rem"
-            >
-              {movieQuery.data?.title}
-            </Typography>
-            <Typography variant="caption" textAlign="center" marginTop="0.3rem">
-              {movieQuery.data?.tagline}
-            </Typography>
-            <Stack
-              direction="row"
-              justifyContent="space-evenly"
-              width="100%"
-              marginTop="1rem"
-            >
-              <Chip
-                label={movieQuery.data?.release_date}
-                icon={<CalendarMonthOutlined />}
-                size="small"
-              />
-              <Chip
-                label={movieQuery.data?.runtime + " Mins"}
-                icon={<AccessAlarm />}
-                size="small"
-              />
-            </Stack>
-            <Stack
-              direction="row"
-              marginTop="0.5rem"
-              justifyContent="space-evenly"
-              width="100%"
-            >
-              <Rating
-                size="small"
-                value={movieQuery.data?.vote_average ?? 10 / 2}
-                readOnly
-              />
-              <Chip
-                icon={<People />}
-                label={movieQuery.data?.vote_count}
-                size="small"
-              />
+        {movieID && !movieQuery.isFetching && !reviewsQuery.isFetching ? (
+          <Stack direction="row" marginTop="2rem">
+            <MovieInfo movie={movieQuery.data!} />
+            <Stack marginLeft="2rem">
+              <MovieOverview movie={movieQuery.data!} />
+              <MovieReview movieID={movieID} reviews={reviewsQuery.data!} />
             </Stack>
           </Stack>
-          <Stack marginLeft="2rem">
-            <Typography variant="h4">Overview</Typography>
-            <Typography variant="body2">{movieQuery.data?.overview}</Typography>
-            <Typography variant="h4" marginTop="1rem">
-              Genre
-            </Typography>
-            <Stack direction="row" gap="0.5rem">
-              {movieQuery.data?.genres.map((genre) => (
-                <Chip label={genre.name} key={genre.id} />
-              ))}
-            </Stack>
-          </Stack>
-        </Stack>
+        ) : (
+          <CircularProgress />
+        )}
       </Box>
     </div>
   );
