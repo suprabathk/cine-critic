@@ -1,9 +1,9 @@
 import Head from "next/head";
-import NowPlaying from "@/components/dashboard/NowPlaying";
 import { Box, CircularProgress } from "@mui/material";
 import Discover from "@/components/dashboard/Discover";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import PlayingNow from "@/components/dashboard/PlayingNow";
 
 export default function Home() {
   const router = useRouter();
@@ -27,7 +27,7 @@ export default function Home() {
         {authorized ? (
           <>
             <Box paddingLeft="3rem" paddingRight="3rem" paddingBottom="3rem">
-              <NowPlaying />
+              <PlayingNow />
               <Discover />
             </Box>
           </>

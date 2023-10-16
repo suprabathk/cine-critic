@@ -3,10 +3,12 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import MovieCard from "@/components/dashboard/MovieCard";
 import { MoviePreview } from "@/types/movies";
 import Grid from "@mui/material/Grid";
-import { CircularProgress, Stack, Typography } from "@mui/material";
+import { CircularProgress, Paper, Stack, Typography } from "@mui/material";
 import commonStyles from "@/styles/common.module.css";
+import Carousel from "react-material-ui-carousel";
+import MovieBanner from "./MovieBanner";
 
-const NowPlaying = () => {
+const PlayingNow = () => {
   const nowPlayingQuery = useQuery({
     queryFn: getNowPlayingMoviesList,
     queryKey: ["nowPlaying"],
@@ -23,26 +25,21 @@ const NowPlaying = () => {
         color="inherit"
         marginBottom="0.5rem"
       >
-        Now playing
+        Playing now
       </Typography>
       {!nowPlayingQuery.isLoading && (
-        <Stack
-          direction="row"
-          overflow="auto"
-          marginRight="-3rem"
-          paddingBottom="0.5rem"
-          gap={2}
-          className={`${commonStyles.customScrollbar}`}
+        <Carousel
+          animation="slide"
+          cycleNavigation={true}
+          navButtonsAlwaysVisible={true}
         >
           {nowPlayingQuery.data.results.map((movie: MoviePreview) => (
-            <Grid key={movie.id}>
-              <MovieCard movie={movie} />
-            </Grid>
+            <MovieBanner movie={movie} key={movie.id} />
           ))}
-        </Stack>
+        </Carousel>
       )}
     </div>
   );
 };
 
-export default NowPlaying;
+export default PlayingNow;
