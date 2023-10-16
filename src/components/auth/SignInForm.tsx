@@ -111,10 +111,12 @@ const SignInForm = withFormik<MyFormProps, FormValues>({
       password: password,
       request_token: props.authToken,
     });
+    console.log(data);
 
     data.data.success
       ? (() => {
           localStorage.setItem("authToken", props.authToken);
+          localStorage.setItem("username", username);
           props.router.push("/");
         })()
       : setErrors({ username: "Invalid credentials" });

@@ -1,5 +1,5 @@
 import { Review } from "@/types/review";
-import { addReview } from "@/utils/review-utils";
+import { addReview, deleteReview } from "@/utils/review-utils";
 import { Person } from "@mui/icons-material";
 import {
   Stack,
@@ -10,6 +10,10 @@ import {
   Rating,
   Modal,
   TextField,
+  Link,
+  Card,
+  CardContent,
+  CardActions,
 } from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
@@ -31,16 +35,26 @@ const MovieReview = ({
   const addReviewMutation = useMutation({
     mutationFn: () =>
       addReview(movieID, {
-        id: new Date().getTime(),
+        id: `${new Date().getTime()}`,
         title: reviewTitle,
         description: reviewDescription,
         rating: reviewRating,
+        username: localStorage.getItem("username") ?? "Anonymus",
       }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["reviews", movieID] });
       setAddReviewModal(false);
     },
   });
+
+  const deleteReviewMutation = useMutation({
+    mutationFn: ({ reviewID }: { reviewID: string }) =>
+      deleteReview(movieID, reviewID),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["reviews", movieID] });
+    },
+  });
+
   return (
     <>
       <Stack direction="row" justifyContent="space-between" alignItems="end">
@@ -59,27 +73,44 @@ const MovieReview = ({
       <Stack marginTop="0.5rem" gap="0.5rem">
         {movieID &&
           reviews.map((review: Review) => (
-            <Box
-              key={review.id}
-              bgcolor="#28282B"
-              padding="0.5rem"
-              paddingLeft="1rem"
-              paddingRight="1rem"
-              borderRadius="10px"
-            >
-              <Typography variant="h5">{review.title}</Typography>
-              <Typography variant="subtitle2">{review.description}</Typography>
-              <Stack
-                direction="row"
-                alignItems="center"
-                justifyContent="space-between"
-              >
-                <Rating size="medium" value={review.rating! / 2} readOnly />
-                <Chip icon={<Person />} label="Anonymus" />
-              </Stack>
-            </Box>
+            <Card key={review.id} sx={{ borderRadius: "1rem" }}>
+              <CardContent>
+                <Stack
+                  direction="row"
+                  alignItems="start"
+                  justifyContent="space-between"
+                >
+                  <Box>
+                    <Typography variant="h5">{review.title}</Typography>
+                    <Typography variant="subtitle2">
+                      {review.description}
+                    </Typography>
+                    <Rating size="medium" value={review.rating! / 2} readOnly />
+                  </Box>
+                  <Chip icon={<Person />} label={review.username} />
+                </Stack>
+              </CardContent>
+              {review.username === localStorage.getItem("username") && (
+                <CardActions>
+                  <Button>Edit</Button>
+                  <Button
+                    color="error"
+                    onClick={() =>
+                      deleteReviewMutation.mutate({ reviewID: review.id })
+                    }
+                  >
+                    Delete
+                  </Button>
+                </CardActions>
+              )}
+            </Card>
           ))}
       </Stack>
+      {reviews.length === 0 && (
+        <>
+          <Typography variant="body2">No reviews yet</Typography>
+        </>
+      )}
       <Modal
         open={addReviewModal}
         onClose={() => setAddReviewModal(false)}

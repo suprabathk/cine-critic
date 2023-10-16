@@ -26,7 +26,7 @@ export default function Home() {
       <main>
         {authorized ? (
           <>
-            <Box paddingLeft="3rem" paddingRight="3rem">
+            <Box paddingLeft="3rem" paddingRight="3rem" paddingBottom="3rem">
               <NowPlaying />
               <Discover />
             </Box>
