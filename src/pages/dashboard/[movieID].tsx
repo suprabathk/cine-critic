@@ -4,6 +4,7 @@ import {
   Box,
   Breadcrumbs,
   CircularProgress,
+  Grid,
   Stack,
   Typography,
 } from "@mui/material";
@@ -42,13 +43,20 @@ const MoviePageContent = ({ movieID }: { movieID: string }) => {
           <Typography color="text.primary">{movieQuery.data?.title}</Typography>
         </Breadcrumbs>
         {movieID && !movieQuery.isFetching && !reviewsQuery.isFetching ? (
-          <Stack direction="row" marginTop="2rem">
-            <MovieInfo movie={movieQuery.data!} />
-            <Stack marginLeft="2rem">
-              <MovieOverview movie={movieQuery.data!} />
-              <MovieReview movieID={movieID} reviews={reviewsQuery.data!} />
-            </Stack>
-          </Stack>
+          <Grid marginTop="2rem" container>
+            <Grid item xs={12} sm={3}>
+              <MovieInfo movie={movieQuery.data!} />
+            </Grid>
+            <Grid item xs={12} sm={8.5}>
+              <Stack
+                marginLeft={{ sm: "2rem" }}
+                marginTop={{ xs: "2rem", sm: "0" }}
+              >
+                <MovieOverview movie={movieQuery.data!} />
+                <MovieReview movieID={movieID} reviews={reviewsQuery.data!} />
+              </Stack>
+            </Grid>
+          </Grid>
         ) : (
           <CircularProgress />
         )}
