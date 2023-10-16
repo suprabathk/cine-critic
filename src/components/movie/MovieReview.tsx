@@ -1,5 +1,5 @@
-import { Review } from "@/types/review";
-import { addReview, deleteReview } from "@/utils/review-utils";
+import { Review, ReviewForm } from "@/types/review";
+import { addReview, deleteReview, editReview } from "@/utils/review-utils";
 import { Person } from "@mui/icons-material";
 import {
   Stack,
@@ -16,8 +16,9 @@ import {
   CardActions,
 } from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Formik, Form, Field, useFormik } from "formik";
 import { useState } from "react";
+import { NewReviewForm } from "./NewReviewForm";
+import { EditReviewForm } from "./EditReviewForm";
 
 const MovieReview = ({
   movieID,
@@ -28,6 +29,10 @@ const MovieReview = ({
 }) => {
   const queryClient = useQueryClient();
   const [addReviewModal, setAddReviewModal] = useState(false);
+  const [editReviewModal, setEditReviewModal] = useState(false);
+  const [currentEditReview, setCurrentEditReview] = useState<
+    Review | undefined
+  >();
 
   const addReviewMutation = useMutation({
     mutationFn: ({
@@ -60,89 +65,13 @@ const MovieReview = ({
     },
   });
 
-  const WithMaterialUI = () => {
-    const formik = useFormik({
-      initialValues: {
-        title: "",
-        description: "",
-        rating: 0,
-      },
-      validate(values) {
-        const errors: {
-          title?: string;
-          description?: string;
-          rating?: string;
-        } = {};
-
-        if (!values.rating) {
-          errors.rating = "Rating is required";
-        }
-        if (!values.title) {
-          errors.title = "Title is required";
-        }
-        if (!values.description) {
-          errors.description = "Description is required";
-        }
-        return errors;
-      },
-      onSubmit: (values) => {
-        addReviewMutation.mutate({
-          title: values.title,
-          description: values.description,
-          rating: values.rating,
-        });
-      },
-    });
-
-    return (
-      <form onSubmit={formik.handleSubmit} style={{ width: "100%" }}>
-        <Stack gap="1rem" width="100%">
-          <Typography variant="h4">Add review</Typography>
-          <Typography variant="subtitle1" lineHeight="0" marginTop="1rem">
-            Select a rating
-          </Typography>
-          <Box>
-            <Typography variant="subtitle2" color="red">
-              {formik.errors.rating}
-            </Typography>
-            <Rating
-              size="large"
-              name="rating"
-              value={formik.values.rating}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
-          </Box>
-          <TextField
-            label="Title"
-            name="title"
-            fullWidth
-            value={formik.values.title}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={formik.touched.title && Boolean(formik.errors.title)}
-            helperText={formik.touched.title && formik.errors.title}
-          />
-          <TextField
-            label="Description"
-            name="description"
-            value={formik.values.description}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={
-              formik.touched.description && Boolean(formik.errors.description)
-            }
-            helperText={formik.touched.description && formik.errors.description}
-            multiline
-            minRows="3"
-          />
-          <Button variant="contained" color="error" type="submit">
-            Submit review
-          </Button>
-        </Stack>
-      </form>
-    );
-  };
+  const editReviewMutation = useMutation({
+    mutationFn: ({ review }: { review: Review }) => editReview(movieID, review),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["reviews", movieID] });
+      setEditReviewModal(false);
+    },
+  });
 
   return (
     <>
@@ -174,14 +103,21 @@ const MovieReview = ({
                     <Typography variant="subtitle2">
                       {review.description}
                     </Typography>
-                    <Rating size="medium" value={review.rating! / 2} readOnly />
+                    <Rating size="medium" value={review.rating!} readOnly />
                   </Box>
                   <Chip icon={<Person />} label={review.username} />
                 </Stack>
               </CardContent>
               {review.username === localStorage.getItem("username") && (
                 <CardActions>
-                  <Button>Edit</Button>
+                  <Button
+                    onClick={() => {
+                      setCurrentEditReview(review);
+                      setEditReviewModal(true);
+                    }}
+                  >
+                    Edit
+                  </Button>
                   <Button
                     color="error"
                     onClick={() =>
@@ -219,7 +155,52 @@ const MovieReview = ({
           borderRadius="20px"
           minWidth="40%"
         >
-          <WithMaterialUI />
+          <NewReviewForm
+            handleSubmit={(values) => {
+              addReviewMutation.mutate({
+                title: values.title,
+                description: values.description,
+                rating: values.rating,
+              });
+            }}
+          />
+        </Box>
+      </Modal>
+      <Modal
+        open={editReviewModal}
+        onClose={() => setEditReviewModal(false)}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Box
+          bgcolor="#28282B"
+          display="flex"
+          boxSizing="border-box"
+          alignItems="center"
+          justifyContent="center"
+          padding="2rem"
+          borderRadius="20px"
+          minWidth="40%"
+        >
+          {currentEditReview && (
+            <EditReviewForm
+              handleSubmit={(values) => {
+                editReviewMutation.mutate({
+                  review: {
+                    ...currentEditReview,
+                    title: values.title,
+                    description: values.description,
+                    rating: values.rating,
+                  },
+                });
+                setEditReviewModal(false);
+              }}
+              review={currentEditReview}
+            />
+          )}
         </Box>
       </Modal>
     </>

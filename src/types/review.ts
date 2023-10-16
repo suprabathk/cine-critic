@@ -5,3 +5,9 @@ export type Review = {
   rating: number;
   username: string;
 };
+
+export type ReviewForm = {
+  title: string;
+  description: string;
+  rating: number;
+};
