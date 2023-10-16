@@ -16,6 +16,7 @@ import MovieInfo from "@/components/movie/MovieInfo";
 import { getReviews } from "@/utils/review-utils";
 import MovieOverview from "@/components/movie/MovieOverView";
 import MovieReview from "@/components/movie/MovieReview";
+import { useState, useEffect } from "react";
 
 const MoviePageContent = ({ movieID }: { movieID: string }) => {
   const movieQuery = useQuery({
@@ -70,8 +71,15 @@ const MoviePage = () => {
   const movieID = Array.isArray(router.query.movieID)
     ? router.query.movieID[0]
     : router.query.movieID;
+  const [authorized, setAuthorized] = useState(false);
 
-  return movieID ? (
+  useEffect(() => {
+    !localStorage.getItem("authToken")
+      ? router.push("/auth")
+      : setAuthorized(true);
+  }, [router]);
+
+  return movieID && authorized ? (
     <MoviePageContent movieID={movieID} />
   ) : (
     <CircularProgress />

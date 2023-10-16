@@ -4,6 +4,7 @@ import MovieCard from "@/components/dashboard/MovieCard";
 import { MoviePreview } from "@/types/movies";
 import Grid from "@mui/material/Grid";
 import { Typography } from "@mui/material";
+import { MoviesSkeleton } from "@/loadingSkeletons/dashboard";
 
 const Discover = () => {
   const discoverQuery = useQuery({
@@ -24,7 +25,9 @@ const Discover = () => {
       >
         Discover
       </Typography>
-      {!discoverQuery.isLoading && (
+      {discoverQuery.isLoading ? (
+        <MoviesSkeleton />
+      ) : (
         <Grid container justifyContent="space-between" gap={2}>
           {discoverQuery.data.results.map((movie: MoviePreview) => (
             <Grid key={movie.id}>

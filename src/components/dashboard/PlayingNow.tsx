@@ -1,10 +1,7 @@
 import { getNowPlayingMoviesList } from "@/utils/movie-utils";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import MovieCard from "@/components/dashboard/MovieCard";
+import { useQuery } from "@tanstack/react-query";
 import { MoviePreview } from "@/types/movies";
-import Grid from "@mui/material/Grid";
-import { CircularProgress, Paper, Stack, Typography } from "@mui/material";
-import commonStyles from "@/styles/common.module.css";
+import { Typography } from "@mui/material";
 import Carousel from "react-material-ui-carousel";
 import MovieBanner from "./MovieBanner";
 
