@@ -7,7 +7,6 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { useRouter } from "next/router";
 import { useQuery } from "@tanstack/react-query";
 import movieStyles from "@/styles/movie.module.css";
 import Link from "next/link";
@@ -16,7 +15,7 @@ import { getReviews } from "@/utils/review-utils";
 import MovieOverview from "@/components/movie/MovieOverView";
 import MovieReview from "@/components/movie/MovieReview";
 
-const MoviePageContent = ({ movieID }: { movieID: string }) => {
+const MoviePage = ({ movieID }: { movieID: string }) => {
   const movieQuery = useQuery({
     queryFn: async ({ queryKey }) => await getMovieDetails(queryKey[1]),
     queryKey: ["movie", movieID],
@@ -54,19 +53,6 @@ const MoviePageContent = ({ movieID }: { movieID: string }) => {
         )}
       </Box>
     </div>
-  );
-};
-
-const MoviePage = () => {
-  const router = useRouter();
-  const movieID = Array.isArray(router.query.movieID)
-    ? router.query.movieID[0]
-    : router.query.movieID;
-
-  return movieID ? (
-    <MoviePageContent movieID={movieID} />
-  ) : (
-    <CircularProgress />
   );
 };
 
