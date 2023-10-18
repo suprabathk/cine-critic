@@ -31,15 +31,15 @@
   padding: 1rem;
   width: 100%;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   border-radius: 1.5rem;
 }
 @media (min-width: 640px) {
   .movieBanner {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-    padding-left: 5rem;
-    padding-right: 5rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
   }
 }
 
@@ -51,7 +51,7 @@
 
 .bannerPoster {
   display: none;
-  height: 30vh;
+  height: 10rem;
   width: fit-content;
   border-radius: 20px;
 }

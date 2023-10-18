@@ -1,4 +1,4 @@
-import { AppBar, Box, Button, Container, Toolbar } from "@mui/material";
+import { AppBar, Box, Button, Container, Stack, Toolbar } from "@mui/material";
 import Logo from "./Logo";
 import { useRouter } from "next/router";
 
@@ -11,23 +11,27 @@ const MyAppBar = () => {
   };
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar
-        position="static"
-        color="transparent"
-        elevation={0}
-        sx={{ backdropFilter: "blur(30px)" }}
+    <AppBar
+      position="sticky"
+      // color="transparent"
+      elevation={0}
+      // sx={{ backdropFilter: "blur(8px)" }}
+    >
+      <Stack
+        direction="row"
+        alignItems="center"
+        justifyContent="space-between"
+        paddingLeft="3rem"
+        paddingRight="3rem"
+        paddingTop="1rem"
+        paddingBottom="1rem"
       >
-        <Toolbar>
-          <Container>
-            <Logo />
-          </Container>
-          <Button color="error" sx={{ whiteSpace: "nowrap" }} onClick={signout}>
-            Sign out
-          </Button>
-        </Toolbar>
-      </AppBar>
-    </Box>
+        <Logo />
+        <Button color="error" sx={{ whiteSpace: "nowrap" }} onClick={signout}>
+          Sign out
+        </Button>
+      </Stack>
+    </AppBar>
   );
 };
 

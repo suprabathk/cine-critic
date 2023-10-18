@@ -3,7 +3,7 @@ import { MoviePreview } from "@/types/movies";
 import { useRouter } from "next/router";
 import movieStyles from "@/styles/movie.module.css";
 import { CalendarMonthOutlined, People } from "@mui/icons-material";
-import { Stack, Typography, Chip, Rating } from "@mui/material";
+import { Stack, Typography, Chip, Rating, Box } from "@mui/material";
 
 export default function MovieBanner(props: { movie: MoviePreview }) {
   const router = useRouter();
@@ -29,8 +29,8 @@ export default function MovieBanner(props: { movie: MoviePreview }) {
     >
       <Stack
         direction="row"
-        alignItems="center"
-        justifyContent="center"
+        alignItems="start"
+        justifyContent="start"
         width="100%"
       >
         <img
@@ -38,25 +38,43 @@ export default function MovieBanner(props: { movie: MoviePreview }) {
           alt="poster"
           className={movieStyles.bannerPoster}
         />
-        <Stack height="100%" alignItems="start" marginLeft="2rem">
-          <Typography
-            variant="h4"
-            fontWeight="600"
-            textAlign="center"
-            marginTop="1rem"
-            lineHeight="1.5rem"
-          >
-            {title}
-          </Typography>
-          <Typography variant="body2" marginTop="0.6rem">
-            {overview}
-          </Typography>
+        <Stack
+          width="100%"
+          height="100%"
+          alignItems="start"
+          justifyContent="space-between"
+          marginLeft="2rem"
+        >
+          <Box>
+            <Typography
+              variant="h6"
+              fontWeight="600"
+              marginTop="0.5rem"
+              lineHeight="1.5rem"
+            >
+              {title}
+            </Typography>
+            <Typography
+              variant="body2"
+              marginTop="0.6rem"
+              sx={{
+                display: "-webkit-box",
+                overflow: "hidden",
+                WebkitBoxOrient: "vertical",
+                WebkitLineClamp: 3,
+              }}
+            >
+              {overview}
+            </Typography>
+          </Box>
+
           <Stack
             direction="row"
             alignItems="center"
             width="100%"
             justifyContent="space-between"
             marginTop="1rem"
+            marginBottom="0.5rem"
           >
             <Chip
               label={release_date}
