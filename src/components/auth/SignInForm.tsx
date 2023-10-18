@@ -82,11 +82,13 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
         variant="contained"
         color="error"
         type="submit"
+        sx={{ borderRadius: "0.5rem" }}
         disabled={
           isSubmitting ||
           !!(errors.username && touched.username) ||
           !!(errors.password && touched.password)
         }
+        fullWidth
       >
         Sign in
       </Button>
@@ -97,8 +99,17 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
 const SignInForm = withFormik<MyFormProps, FormValues>({
   mapPropsToValues: () => ({ username: "", password: "" }),
   validationSchema: Yup.object().shape({
-    username: Yup.string().required("Username is required"),
-    password: Yup.string().required("Password is required"),
+    username: Yup.string()
+      .required("Username is required")
+      .min(8, "Username should be minimum of 8 characters")
+      .matches(
+        /^[0-9a-zA-Z]+$/,
+        "Username can contain only letters and numbers"
+      ),
+    password: Yup.string()
+      .required("Password is required")
+      .min(8, "Password should be minimum of 8 characters")
+      .matches(/^\S*$/, "Password cannot contain spaces"),
   }),
 
   async handleSubmit(
