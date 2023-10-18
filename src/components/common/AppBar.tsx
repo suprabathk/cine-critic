@@ -7,6 +7,7 @@ const MyAppBar = () => {
 
   const signout = () => {
     localStorage.removeItem("authToken");
+    localStorage.removeItem("username");
     router.push("/auth");
   };
 

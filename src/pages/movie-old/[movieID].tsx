@@ -18,7 +18,7 @@ import MovieOverview from "@/components/movie/MovieOverView";
 import MovieReview from "@/components/movie/MovieReview";
 import { useState, useEffect } from "react";
 import { MoviesSkeleton } from "@/loadingSkeletons/homepage";
-import MoviePageSkeleton from "@/loadingSkeletons/moviePage";
+import MoviePageSkeleton from "@/loadingSkeletons/moviePage-old";
 
 const MoviePageContent = ({ movieID }: { movieID: string }) => {
   const movieQuery = useQuery({

@@ -19,6 +19,7 @@ import {
   People,
 } from "@mui/icons-material";
 import MovieReview from "@/components/movie/MovieReview";
+import MoviePageSkeleton from "@/loadingSkeletons/moviePage";
 
 const MoviePageContent = ({ movieID }: { movieID: string }) => {
   const movieQuery = useQuery({
@@ -31,8 +32,9 @@ const MoviePageContent = ({ movieID }: { movieID: string }) => {
     queryKey: ["reviews", movieID],
   });
 
-  return (
-    <Box>
+  return movieID && !movieQuery.isLoading && !reviewsQuery.isLoading ? (
+    // return false ? (
+    <>
       <div
         className={movieStyles.moviePageBanner}
         style={{
@@ -108,11 +110,11 @@ const MoviePageContent = ({ movieID }: { movieID: string }) => {
         </Stack>
       </div>
       <Box paddingLeft="3rem" paddingRight="3rem" paddingBottom="3rem">
-        {movieID && !reviewsQuery.isLoading && (
-          <MovieReview movieID={movieID} reviews={reviewsQuery.data!} />
-        )}
+        <MovieReview movieID={movieID} reviews={reviewsQuery.data!} />
       </Box>
-    </Box>
+    </>
+  ) : (
+    <MoviePageSkeleton />
   );
 };
 
