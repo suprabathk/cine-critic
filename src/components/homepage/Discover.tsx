@@ -28,9 +28,9 @@ const Discover = () => {
       {discoverQuery.isLoading ? (
         <MoviesSkeleton />
       ) : (
-        <Grid container justifyContent="space-between" gap={2}>
+        <Grid container spacing="1rem">
           {discoverQuery.data.results.map((movie: MoviePreview) => (
-            <Grid key={movie.id}>
+            <Grid item key={movie.id} xs={12} md={6} lg={4}>
               <MovieCard movie={movie} />
             </Grid>
           ))}

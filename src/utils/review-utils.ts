@@ -33,8 +33,6 @@ export const deleteReview = async (movieID: string, reviewID: string) => {
 };
 
 export const editReview = async (movieID: string, newReview: Review) => {
-  console.log("hello");
-
   const reviews: Review[] = JSON.parse(localStorage.getItem(movieID) ?? "[]");
   return await Promise.resolve(
     typeof window !== "undefined" &&

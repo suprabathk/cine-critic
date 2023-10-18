@@ -111,7 +111,6 @@ const SignInForm = withFormik<MyFormProps, FormValues>({
       password: password,
       request_token: props.authToken,
     });
-    console.log(data);
 
     data.data.success
       ? (() => {
