@@ -37,21 +37,21 @@ export default function ActionAreaCard(props: { movie: MoviePreview }) {
         <CardContent>
           <Typography
             gutterBottom
-            variant="h5"
+            variant="h6"
             component="div"
             textOverflow="ellipsis"
             whiteSpace="pre"
             overflow="hidden"
             marginBottom={0}
             fontWeight={400}
-            fontSize="1.2rem"
+            // fontSize="1.2rem"
           >
             {title}
           </Typography>
           <Typography
             variant="body2"
             color="text.secondary"
-            whiteSpace="nowrap"
+            whiteSpace="pre"
             overflow="hidden"
             textOverflow="ellipsis"
           >

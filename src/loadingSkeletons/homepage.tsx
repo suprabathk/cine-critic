@@ -9,11 +9,13 @@ export const PlayingNowSkeleton = () => (
 );
 
 export const MoviesSkeleton = () => (
-  <Grid container justifyContent="space-between" gap={2}>
+  <Grid container spacing="1rem">
     {Array(6)
       .fill(1)
       .map((x, id) => (
-        <Skeleton variant="rounded" height={200} width={370} key={id} />
+        <Grid item key={id} xs={12} md={6} lg={4}>
+          <Skeleton variant="rounded" height={200} />
+        </Grid>
       ))}
   </Grid>
 );
