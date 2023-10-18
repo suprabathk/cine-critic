@@ -2,23 +2,23 @@
 import { getMovieDetails } from "@/utils/movie-utils";
 import {
   Box,
-  Breadcrumbs,
+  Chip,
   CircularProgress,
-  Grid,
+  Rating,
   Stack,
   Typography,
 } from "@mui/material";
 import { useRouter } from "next/router";
 import { useQuery } from "@tanstack/react-query";
 import movieStyles from "@/styles/movie.module.css";
-import Link from "next/link";
-import MovieInfo from "@/components/movie/MovieInfo";
 import { getReviews } from "@/utils/review-utils";
-import MovieOverview from "@/components/movie/MovieOverView";
-import MovieReview from "@/components/movie/MovieReview";
 import { useState, useEffect } from "react";
-import { MoviesSkeleton } from "@/loadingSkeletons/homepage";
-import MoviePageSkeleton from "@/loadingSkeletons/moviePage";
+import {
+  AccessAlarm,
+  CalendarMonthOutlined,
+  People,
+} from "@mui/icons-material";
+import MovieReview from "@/components/movie/MovieReview";
 
 const MoviePageContent = ({ movieID }: { movieID: string }) => {
   const movieQuery = useQuery({
@@ -32,40 +32,87 @@ const MoviePageContent = ({ movieID }: { movieID: string }) => {
   });
 
   return (
-    <div
-      className={movieStyles.backgroundDiv}
-      // style={{
-      //   backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url(${process.env.NEXT_PUBLIC_TMDB_API_IMAGES}/${movieQuery.data?.backdrop_path})`,
-      // }}
-    >
-      <Box marginTop="2rem">
-        <Breadcrumbs aria-label="breadcrumb" separator=">">
-          <Link color="inherit" href="/">
-            Home
-          </Link>
-          <Typography color="text.primary">{movieQuery.data?.title}</Typography>
-        </Breadcrumbs>
-        {movieID && !movieQuery.isLoading && !reviewsQuery.isLoading ? (
-          // {false ? (
-          <Grid marginTop="2rem" container>
-            <Grid item xs={12} sm={3}>
-              <MovieInfo movie={movieQuery.data!} />
-            </Grid>
-            <Grid item xs={12} sm={8.5}>
-              <Stack
-                marginLeft={{ sm: "2rem" }}
-                marginTop={{ xs: "2rem", sm: "0" }}
-              >
-                <MovieOverview movie={movieQuery.data!} />
-                <MovieReview movieID={movieID} reviews={reviewsQuery.data!} />
+    <Box>
+      <div
+        className={movieStyles.moviePageBanner}
+        style={{
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url(${process.env.NEXT_PUBLIC_TMDB_API_IMAGES}/${movieQuery.data?.backdrop_path})`,
+        }}
+      >
+        <Stack
+          direction="row"
+          alignItems="start"
+          justifyContent="start"
+          width="100%"
+        >
+          <img
+            src={`${process.env.NEXT_PUBLIC_TMDB_API_IMAGES}/${movieQuery.data?.poster_path}`}
+            alt="poster"
+            className={movieStyles.moviePagePoster}
+          />
+          <Stack
+            width="100%"
+            height="100%"
+            alignItems="start"
+            justifyContent="space-between"
+          >
+            <Box width="100%">
+              <Typography variant="h4" fontWeight="600" marginTop="0.5rem">
+                {movieQuery.data?.title}
+              </Typography>
+              <Typography variant="subtitle2" marginTop="0.2rem">
+                {movieQuery.data?.overview}
+              </Typography>
+
+              <Stack direction={{ xs: "column-reverse", md: "column" }}>
+                <Stack direction="row" gap="0.5rem" marginTop="1rem">
+                  {movieQuery.data?.genres.map((genre) => (
+                    <Chip label={genre.name} size="small" key={genre.id} />
+                  ))}
+                </Stack>
+                <Stack
+                  direction="row"
+                  marginTop="1rem"
+                  gap="1rem"
+                  justifyContent={{ xs: "space-between", md: "start" }}
+                >
+                  <Chip
+                    label={movieQuery.data?.release_date}
+                    icon={<CalendarMonthOutlined />}
+                    size="small"
+                  />
+                  <Chip
+                    label={movieQuery.data?.runtime + " Mins"}
+                    icon={<AccessAlarm />}
+                    size="small"
+                  />
+                </Stack>
               </Stack>
-            </Grid>
-          </Grid>
-        ) : (
-          <MoviePageSkeleton />
+            </Box>
+
+            <Stack
+              direction="row"
+              alignItems="center"
+              gap="0.5rem"
+              marginBottom="0.5rem"
+              marginTop="1rem"
+            >
+              <Rating value={movieQuery.data?.vote_average! / 2} readOnly />
+              <Chip
+                icon={<People />}
+                label={movieQuery.data?.vote_count}
+                size="small"
+              />
+            </Stack>
+          </Stack>
+        </Stack>
+      </div>
+      <Box paddingLeft="3rem" paddingRight="3rem" paddingBottom="3rem">
+        {movieID && !reviewsQuery.isLoading && (
+          <MovieReview movieID={movieID} reviews={reviewsQuery.data!} />
         )}
       </Box>
-    </div>
+    </Box>
   );
 };
 

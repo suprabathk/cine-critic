@@ -1,6 +1,6 @@
 import { Review, ReviewForm } from "@/types/review";
 import { addReview, deleteReview, editReview } from "@/utils/review-utils";
-import { Person } from "@mui/icons-material";
+import { DeleteForever, Edit, Person } from "@mui/icons-material";
 import {
   Stack,
   Typography,
@@ -75,8 +75,18 @@ const MovieReview = ({
 
   return (
     <>
-      <Stack direction="row" justifyContent="space-between" alignItems="end">
-        <Typography variant="h4" marginTop="1.5rem">
+      <Stack
+        direction="row"
+        justifyContent="space-between"
+        alignItems="end"
+        marginBottom="1rem"
+      >
+        <Typography
+          variant="h5"
+          marginTop="1.5rem"
+          fontSize="1.7rem"
+          fontWeight="600"
+        >
           Reviews
         </Typography>
         <Button
@@ -105,29 +115,42 @@ const MovieReview = ({
                     </Typography>
                     <Rating size="medium" value={review.rating!} readOnly />
                   </Box>
-                  <Chip icon={<Person />} label={review.username} />
+                  <Stack direction="row" alignItems="center" gap="0.4rem">
+                    {review.username === localStorage.getItem("username") && (
+                      <>
+                        <Button
+                          size="small"
+                          sx={{
+                            backgroundColor: "rgba(255, 255, 255, 0.12)",
+                            borderRadius: "9999px",
+                          }}
+                          color="inherit"
+                          onClick={() => {
+                            setCurrentEditReview(review);
+                            setEditReviewModal(true);
+                          }}
+                        >
+                          <Edit />
+                        </Button>
+                        <Button
+                          sx={{
+                            backgroundColor: "rgba(255, 255, 255, 0.12)",
+                            borderRadius: "9999px",
+                          }}
+                          size="small"
+                          color="inherit"
+                          onClick={() =>
+                            deleteReviewMutation.mutate({ reviewID: review.id })
+                          }
+                        >
+                          <DeleteForever />
+                        </Button>
+                      </>
+                    )}
+                    <Chip icon={<Person />} label={review.username} />
+                  </Stack>
                 </Stack>
               </CardContent>
-              {review.username === localStorage.getItem("username") && (
-                <CardActions>
-                  <Button
-                    onClick={() => {
-                      setCurrentEditReview(review);
-                      setEditReviewModal(true);
-                    }}
-                  >
-                    Edit
-                  </Button>
-                  <Button
-                    color="error"
-                    onClick={() =>
-                      deleteReviewMutation.mutate({ reviewID: review.id })
-                    }
-                  >
-                    Delete
-                  </Button>
-                </CardActions>
-              )}
             </Card>
           ))}
       </Stack>
@@ -153,7 +176,7 @@ const MovieReview = ({
           justifyContent="center"
           padding="2rem"
           borderRadius="20px"
-          minWidth="40%"
+          minWidth={{ xs: "85%", sm: "70%", md: "60%", lg: "50%" }}
         >
           <NewReviewForm
             handleSubmit={(values) => {
@@ -183,7 +206,7 @@ const MovieReview = ({
           justifyContent="center"
           padding="2rem"
           borderRadius="20px"
-          minWidth="40%"
+          minWidth={{ xs: "85%", sm: "70%", md: "60%", lg: "50%" }}
         >
           {currentEditReview && (
             <EditReviewForm
