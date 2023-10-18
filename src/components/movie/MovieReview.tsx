@@ -103,51 +103,83 @@ const MovieReview = ({
           reviews.map((review: Review) => (
             <Card key={review.id} sx={{ borderRadius: "1rem" }}>
               <CardContent>
-                <Stack
-                  direction="row"
-                  alignItems="start"
-                  justifyContent="space-between"
-                >
-                  <Box>
-                    <Typography variant="h5">{review.title}</Typography>
-                    <Typography variant="subtitle2" marginBottom="1rem">
-                      {review.description}
-                    </Typography>
+                <Box>
+                  <Typography variant="h5" sx={{ wordBreak: "break-word" }}>
+                    {review.title}
+                  </Typography>
+                  <Typography
+                    variant="subtitle2"
+                    marginBottom="1rem"
+                    sx={{ wordBreak: "break-word" }}
+                  >
+                    {review.description}
+                  </Typography>
+                </Box>
+
+                <Stack alignItems={{ sm: "end" }}>
+                  <Stack
+                    direction="row"
+                    width="100%"
+                    justifyContent="space-between"
+                    alignItems="center"
+                  >
                     <Rating size="medium" value={review.rating!} readOnly />
-                  </Box>
-                  <Stack direction="row" alignItems="center" gap="0.4rem">
+                    <Chip icon={<Person />} label={review.username} />
+                  </Stack>
+
+                  <Stack
+                    direction="row"
+                    width="100%"
+                    alignItems="center"
+                    justifyContent="start"
+                    gap="0.4rem"
+                    marginTop="1rem"
+                  >
                     {review.username === localStorage.getItem("username") && (
                       <>
-                        <Button
-                          size="small"
-                          sx={{
-                            backgroundColor: "rgba(255, 255, 255, 0.12)",
-                            borderRadius: "9999px",
-                          }}
-                          color="inherit"
-                          onClick={() => {
-                            setCurrentEditReview(review);
-                            setEditReviewModal(true);
-                          }}
-                        >
-                          <Edit />
-                        </Button>
-                        <Button
-                          sx={{
-                            backgroundColor: "rgba(255, 255, 255, 0.12)",
-                            borderRadius: "9999px",
-                          }}
-                          size="small"
-                          color="inherit"
-                          onClick={() =>
-                            deleteReviewMutation.mutate({ reviewID: review.id })
-                          }
-                        >
-                          <DeleteForever />
-                        </Button>
+                        <Box width={{ xs: "100%", sm: "fit-content" }}>
+                          <Button
+                            size="small"
+                            sx={{
+                              backgroundColor: "rgba(255, 255, 255, 0.12)",
+                              borderRadius: "9999px",
+                              paddingLeft: "1rem",
+                              paddingRight: "1rem",
+                            }}
+                            fullWidth
+                            color="inherit"
+                            onClick={() => {
+                              setCurrentEditReview(review);
+                              setEditReviewModal(true);
+                            }}
+                            endIcon={<Edit />}
+                          >
+                            Edit
+                          </Button>
+                        </Box>
+                        <Box width={{ xs: "100%", sm: "fit-content" }}>
+                          <Button
+                            sx={{
+                              backgroundColor: "rgba(255, 255, 255, 0.12)",
+                              borderRadius: "9999px",
+                              paddingLeft: "1rem",
+                              paddingRight: "1rem",
+                            }}
+                            fullWidth
+                            size="small"
+                            color="inherit"
+                            onClick={() =>
+                              deleteReviewMutation.mutate({
+                                reviewID: review.id,
+                              })
+                            }
+                            endIcon={<DeleteForever />}
+                          >
+                            Delete
+                          </Button>
+                        </Box>
                       </>
                     )}
-                    <Chip icon={<Person />} label={review.username} />
                   </Stack>
                 </Stack>
               </CardContent>
