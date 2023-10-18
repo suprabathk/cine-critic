@@ -39,3 +39,6 @@ export const signIn = async (data: {
     return await { data: { success: false } };
   }
 };
+
+export const isAuth = () =>
+  typeof window !== undefined && !!localStorage.getItem("authToken");

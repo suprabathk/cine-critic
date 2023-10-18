@@ -18,7 +18,7 @@ export const MoviesSkeleton = () => (
   </Grid>
 );
 
-export const DashboardSkeleton = () => {
+export const HomepageSkeleton = () => {
   return (
     <Stack paddingLeft="3rem" paddingRight="3rem" paddingBottom="3rem">
       <TextSkeleton />

@@ -22,7 +22,7 @@ export default function MovieBanner(props: { movie: MoviePreview }) {
   return (
     <div
       className={movieStyles.movieBanner}
-      onClick={() => router.push(`/dashboard/${id}`)}
+      onClick={() => router.push(`/movie/${id}`)}
       style={{
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url(${process.env.NEXT_PUBLIC_TMDB_API_IMAGES}/${backdrop_path})`,
       }}

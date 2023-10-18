@@ -1,10 +1,10 @@
 import { getDiscoverList } from "@/utils/movie-utils";
 import { useQuery } from "@tanstack/react-query";
-import MovieCard from "@/components/dashboard/MovieCard";
+import MovieCard from "@/components/homepage/MovieCard";
 import { MoviePreview } from "@/types/movies";
 import Grid from "@mui/material/Grid";
 import { Typography } from "@mui/material";
-import { MoviesSkeleton } from "@/loadingSkeletons/dashboard";
+import { MoviesSkeleton } from "@/loadingSkeletons/homepage";
 
 const Discover = () => {
   const discoverQuery = useQuery({

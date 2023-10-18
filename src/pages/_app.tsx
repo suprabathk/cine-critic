@@ -24,7 +24,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
   return (
     <ThemeProvider theme={darkTheme}>
       <QueryClientProvider client={queryClient}>
-        {router.pathname.startsWith("/dashboard") && <MyAppBar />}
+        {!router.pathname.startsWith("/auth") && <MyAppBar />}
         <Component {...pageProps} />
         <ReactQueryDevtools initialIsOpen={false} />
         <CssBaseline enableColorScheme />

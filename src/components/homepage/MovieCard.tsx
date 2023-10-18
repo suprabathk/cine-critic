@@ -24,9 +24,7 @@ export default function ActionAreaCard(props: { movie: MoviePreview }) {
 
   return (
     <Card sx={{ maxWidth: 370 }} className={movie.movieCard}>
-      <CardActionArea
-        onClick={() => router.push(`/dashboard/${props.movie.id}`)}
-      >
+      <CardActionArea onClick={() => router.push(`/movie/${props.movie.id}`)}>
         <CardMedia
           component="img"
           height="140"

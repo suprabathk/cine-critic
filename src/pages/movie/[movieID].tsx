@@ -17,7 +17,7 @@ import { getReviews } from "@/utils/review-utils";
 import MovieOverview from "@/components/movie/MovieOverView";
 import MovieReview from "@/components/movie/MovieReview";
 import { useState, useEffect } from "react";
-import { MoviesSkeleton } from "@/loadingSkeletons/dashboard";
+import { MoviesSkeleton } from "@/loadingSkeletons/homepage";
 import MoviePageSkeleton from "@/loadingSkeletons/moviePage";
 
 const MoviePageContent = ({ movieID }: { movieID: string }) => {
@@ -40,7 +40,7 @@ const MoviePageContent = ({ movieID }: { movieID: string }) => {
     >
       <Box marginTop="2rem">
         <Breadcrumbs aria-label="breadcrumb" separator=">">
-          <Link color="inherit" href="/dashboard">
+          <Link color="inherit" href="/">
             Home
           </Link>
           <Typography color="text.primary">{movieQuery.data?.title}</Typography>

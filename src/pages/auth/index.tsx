@@ -1,7 +1,7 @@
 import authStyles from "@/styles/auth.module.css";
 import SignInForm from "@/components/auth/SignInForm";
 import { useEffect, useState } from "react";
-import { getAuthToken } from "@/utils/auth-utils";
+import { getAuthToken, isAuth } from "@/utils/auth-utils";
 import { useRouter } from "next/router";
 import { Chip, Stack, Typography } from "@mui/material";
 
@@ -11,7 +11,8 @@ const Signin = () => {
 
   useEffect(() => {
     getAuthToken().then((data) => setAuthToken(data));
-  }, []);
+    isAuth() && router.push("/");
+  }, [router]);
 
   return (
     <Stack direction="row" height="100vh">

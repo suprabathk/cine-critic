@@ -28,14 +28,19 @@
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-  padding-left: 5rem;
-  padding-right: 5rem;
+  padding: 1rem;
   width: 100%;
   display: flex;
   align-items: center;
   border-radius: 1.5rem;
+}
+@media (min-width: 640px) {
+  .movieBanner {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
 }
 
 .posterDiv {
@@ -45,7 +50,14 @@
 }
 
 .bannerPoster {
+  display: none;
   height: 30vh;
   width: fit-content;
   border-radius: 20px;
+}
+
+@media (min-width: 640px) {
+  .bannerPoster {
+    display: inline;
+  }
 }
