@@ -2,7 +2,7 @@ import axios from "axios";
 
 const getAuthTokenOptions = {
   method: "GET",
-  url: "https://api.themoviedb.org/3/authentication/token/new",
+  url: `${process.env.NEXT_PUBLIC_TMDB_API}/authentication/token/new`,
   headers: {
     accept: "application/json",
     Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_API_READ_ACCESS_TOKEN}`,
@@ -19,7 +19,7 @@ const getSignInOptions = (data: {
   request_token: string;
 }) => ({
   method: "POST",
-  url: "https://api.themoviedb.org/3/authentication/token/validate_with_login",
+  url: `${process.env.NEXT_PUBLIC_TMDB_API}/authentication/token/validate_with_login`,
   headers: {
     accept: "application/json",
     "content-type": "application/json",

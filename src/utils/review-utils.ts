@@ -1,4 +1,4 @@
-import { Review, ReviewForm } from "@/types/review";
+import { Review } from "@/types/review";
 
 export const getReviews = async (movieID: string): Promise<Review[]> => {
   return await Promise.resolve(

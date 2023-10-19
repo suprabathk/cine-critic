@@ -3,7 +3,7 @@ import axios from "axios";
 
 const getNowPlayingMoviesListOptions = {
   method: "GET",
-  url: "https://api.themoviedb.org/3/movie/now_playing?language=en-US",
+  url: `${process.env.NEXT_PUBLIC_TMDB_API}/movie/now_playing?language=en-US`,
   headers: {
     accept: "application/json",
     Authorization:
@@ -17,7 +17,7 @@ export const getNowPlayingMoviesList = async () => {
 
 const getDiscoverOptions = {
   method: "GET",
-  url: "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc",
+  url: `${process.env.NEXT_PUBLIC_TMDB_API}/discover/movie?sort_by=popularity.desc`,
   headers: {
     accept: "application/json",
     Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_API_READ_ACCESS_TOKEN}`,
@@ -30,7 +30,7 @@ export const getDiscoverList = async () => {
 
 const getMovieDetailsOptions = (movieID: string) => ({
   method: "GET",
-  url: `https://api.themoviedb.org/3/movie/${movieID}?language=en-US`,
+  url: `${process.env.NEXT_PUBLIC_TMDB_API}/movie/${movieID}?language=en-US`,
   headers: {
     accept: "application/json",
     Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_API_READ_ACCESS_TOKEN}`,
