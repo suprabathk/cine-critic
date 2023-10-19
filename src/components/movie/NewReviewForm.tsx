@@ -8,7 +8,6 @@ import {
   Button,
 } from "@mui/material";
 import { useFormik } from "formik";
-import commonStyles from "@/styles/common.module.css";
 
 export const NewReviewForm = ({
   handleSubmit,
@@ -34,8 +33,14 @@ export const NewReviewForm = ({
       if (!values.title) {
         errors.title = "Title is required";
       }
+      if (values.title.length > 40) {
+        errors.title = "Title cannot be more than 40 characters";
+      }
       if (!values.description) {
         errors.description = "Description is required";
+      }
+      if (values.description.length > 200) {
+        errors.description = "Description cannot be more than 200 characters";
       }
       return errors;
     },
