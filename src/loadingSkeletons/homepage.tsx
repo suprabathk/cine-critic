@@ -4,10 +4,6 @@ export const TextSkeleton = () => (
   <Skeleton width="20%" variant="text" sx={{ marginBottom: "0.5rem" }} />
 );
 
-export const PlayingNowSkeleton = () => (
-  <Skeleton variant="rounded" height={200} />
-);
-
 export const MoviesSkeleton = () => (
   <Grid container spacing="1rem">
     {Array(6)
@@ -24,7 +20,6 @@ export const HomepageSkeleton = () => {
   return (
     <Stack paddingLeft="3rem" paddingRight="3rem" paddingBottom="3rem">
       <TextSkeleton />
-      {/* <PlayingNowSkeleton /> */}
       <Skeleton
         width="20%"
         variant="text"

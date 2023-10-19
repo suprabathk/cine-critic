@@ -19,7 +19,7 @@ import {
   People,
 } from "@mui/icons-material";
 import MovieReview from "@/components/movie/MovieReview";
-import MoviePageSkeleton from "@/loadingSkeletons/moviePage";
+import MoviepageSkeleton from "@/loadingSkeletons/moviepage";
 
 const MoviePageContent = ({ movieID }: { movieID: string }) => {
   const movieQuery = useQuery({
@@ -33,7 +33,6 @@ const MoviePageContent = ({ movieID }: { movieID: string }) => {
   });
 
   return movieID && !movieQuery.isLoading && !reviewsQuery.isLoading ? (
-    // return false ? (
     <>
       <div
         className={movieStyles.moviePageBanner}
@@ -118,7 +117,7 @@ const MoviePageContent = ({ movieID }: { movieID: string }) => {
       </Box>
     </>
   ) : (
-    <MoviePageSkeleton />
+    <MoviepageSkeleton />
   );
 };
 
@@ -138,7 +137,7 @@ const MoviePage = () => {
   return movieID && authorized ? (
     <MoviePageContent movieID={movieID} />
   ) : (
-    <CircularProgress />
+    <MoviepageSkeleton />
   );
 };
 

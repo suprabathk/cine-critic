@@ -1,4 +1,4 @@
-import { Review, ReviewForm } from "@/types/review";
+import { Review } from "@/types/review";
 import { addReview, deleteReview, editReview } from "@/utils/review-utils";
 import { DeleteForever, Edit, Person } from "@mui/icons-material";
 import {
@@ -9,16 +9,13 @@ import {
   Box,
   Rating,
   Modal,
-  TextField,
-  Link,
   Card,
   CardContent,
-  CardActions,
 } from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { NewReviewForm } from "./NewReviewForm";
-import { EditReviewForm } from "./EditReviewForm";
+import { NewReviewForm } from "../../components/movie/NewReviewForm";
+import { EditReviewForm } from "../../components/movie/EditReviewForm";
 
 const MovieReview = ({
   movieID,

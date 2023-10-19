@@ -1,4 +1,4 @@
-import { Review, ReviewForm } from "@/types/review";
+import { ReviewForm } from "@/types/review";
 import {
   Stack,
   Typography,

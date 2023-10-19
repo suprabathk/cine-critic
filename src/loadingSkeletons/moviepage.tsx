@@ -1,6 +1,6 @@
 import { Box, Grid, Skeleton, Stack } from "@mui/material";
 
-const MoviePageSkeleton = () => {
+const MoviepageSkeleton = () => {
   return (
     <Stack width="100%">
       <Skeleton height="15rem" variant="rounded" />
@@ -21,4 +21,4 @@ const MoviePageSkeleton = () => {
   );
 };
 
-export default MoviePageSkeleton;
+export default MoviepageSkeleton;

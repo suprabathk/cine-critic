@@ -36,7 +36,7 @@ export const signIn = async (data: {
   try {
     return await axios.request(getSignInOptions(data));
   } catch (error) {
-    return await { data: { success: false } };
+    return { data: { success: false } };
   }
 };
 

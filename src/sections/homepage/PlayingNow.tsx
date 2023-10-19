@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { MoviePreview } from "@/types/movies";
 import { Typography } from "@mui/material";
 import Carousel from "react-material-ui-carousel";
-import MovieBanner from "./MovieBanner";
+import MovieBanner from "../../components/homepage/MovieBanner";
 
 const PlayingNow = () => {
   const nowPlayingQuery = useQuery({
