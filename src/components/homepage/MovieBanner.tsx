@@ -13,7 +13,6 @@ export default function MovieBanner(props: { movie: MoviePreview }) {
     overview,
     poster_path,
     backdrop_path,
-    adult,
     release_date,
     vote_average,
     vote_count,
