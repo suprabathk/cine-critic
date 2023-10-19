@@ -84,6 +84,7 @@ export const EditReviewForm = ({
           helperText={formik.touched.description && formik.errors.description}
           multiline
           minRows="3"
+          maxRows="5"
         />
         <Button variant="contained" color="error" type="submit">
           Update review

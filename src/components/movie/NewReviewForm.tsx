@@ -8,6 +8,7 @@ import {
   Button,
 } from "@mui/material";
 import { useFormik } from "formik";
+import commonStyles from "@/styles/common.module.css";
 
 export const NewReviewForm = ({
   handleSubmit,
@@ -82,6 +83,7 @@ export const NewReviewForm = ({
           helperText={formik.touched.description && formik.errors.description}
           multiline
           minRows="3"
+          maxRows="5"
         />
         <Button variant="contained" color="error" type="submit">
           Submit review
