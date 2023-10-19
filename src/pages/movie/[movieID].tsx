@@ -1,13 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { getMovieDetails } from "@/utils/movie-utils";
-import {
-  Box,
-  Chip,
-  CircularProgress,
-  Rating,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box, Chip, Rating, Stack, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import { useQuery } from "@tanstack/react-query";
 import movieStyles from "@/styles/movie.module.css";
@@ -18,7 +11,7 @@ import {
   CalendarMonthOutlined,
   People,
 } from "@mui/icons-material";
-import MovieReview from "@/components/movie/MovieReview";
+import MovieReview from "@/sections/movie/MovieReview";
 import MoviepageSkeleton from "@/loadingSkeletons/moviepage";
 
 const MoviePageContent = ({ movieID }: { movieID: string }) => {
