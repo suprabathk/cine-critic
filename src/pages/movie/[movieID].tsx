@@ -109,7 +109,11 @@ const MoviePageContent = ({ movieID }: { movieID: string }) => {
           </Stack>
         </Stack>
       </div>
-      <Box paddingLeft="3rem" paddingRight="3rem" paddingBottom="3rem">
+      <Box
+        paddingLeft={{ xs: "1rem", sm: "3rem" }}
+        paddingRight={{ xs: "1rem", sm: "3rem" }}
+        paddingBottom={{ xs: "1rem", sm: "3rem" }}
+      >
         <MovieReview movieID={movieID} reviews={reviewsQuery.data!} />
       </Box>
     </>

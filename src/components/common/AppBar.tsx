@@ -22,8 +22,8 @@ const MyAppBar = () => {
         direction="row"
         alignItems="center"
         justifyContent="space-between"
-        paddingLeft="3rem"
-        paddingRight="3rem"
+        paddingLeft={{ xs: "1rem", sm: "3rem" }}
+        paddingRight={{ xs: "1rem", sm: "3rem" }}
         paddingTop="1rem"
         paddingBottom="1rem"
       >

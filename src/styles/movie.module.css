@@ -68,15 +68,17 @@
   background-size: cover;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  padding-left: 3rem;
-  padding-right: 3rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   width: 100%;
   display: flex;
 }
-@media (min-width: 640px) {
+@media (min-width: 600px) {
   .moviePageBanner {
     padding-top: 2rem;
     padding-bottom: 2rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
   }
 }
 
