@@ -44,9 +44,6 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
         <label htmlFor="username" className={authStyles.formLabel}>
           Username
         </label>
-        <span className={authStyles.formErrorMessage}>
-          {errors.username && touched.username && errors.username}
-        </span>
         <input
           type="text"
           id="username"
@@ -57,16 +54,14 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
           onBlur={handleBlur}
           value={values.username}
         />
+        <span className={authStyles.formErrorMessage}>
+          {errors.username && touched.username && errors.username}
+        </span>
       </div>
       <div className={authStyles.formInput}>
         <label htmlFor="password" className={authStyles.formLabel}>
           Password
         </label>
-        <span className={authStyles.formErrorMessage}>
-          {errors.password && touched.password && errors.password}
-        </span>
-
-        <span className={authStyles.formErrorMessage}></span>
         <input
           type="password"
           id="password"
@@ -77,6 +72,9 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
           onBlur={handleBlur}
           value={values.password}
         />
+        <span className={authStyles.formErrorMessage}>
+          {errors.password && touched.password && errors.password}
+        </span>
       </div>
       <Button
         variant="contained"

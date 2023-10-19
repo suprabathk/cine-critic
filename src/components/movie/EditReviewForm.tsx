@@ -51,9 +51,6 @@ export const EditReviewForm = ({
           Select a rating
         </Typography>
         <Box>
-          <Typography variant="subtitle2" color="red">
-            {formik.errors.rating}
-          </Typography>
           <Rating
             size="large"
             name="rating"
@@ -61,6 +58,9 @@ export const EditReviewForm = ({
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
+          <Typography variant="subtitle2" color="red">
+            {formik.errors.rating}
+          </Typography>
         </Box>
         <TextField
           label="Title"
