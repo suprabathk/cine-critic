@@ -1,0 +1,124 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot testing 1`] = `
+<div
+  className="MuiStack-root css-9gyggb-MuiStack-root"
+>
+  <div
+    className="authInfo"
+  >
+    <div
+      className="MuiChip-root MuiChip-filled MuiChip-sizeSmall MuiChip-colorError MuiChip-filledError css-vmjpzh-MuiChip-root"
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+    >
+      <span
+        className="MuiChip-label MuiChip-labelSmall css-wjsjww-MuiChip-label"
+      >
+        Movies, Shows and more
+      </span>
+    </div>
+    <h3
+      className="MuiTypography-root MuiTypography-h3 css-3sj0e9-MuiTypography-root"
+    >
+      Delivering movie reviews around the globe.
+    </h3>
+    <p
+      className="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+    >
+      Get the live reviews and latest news about Movies, Shows.
+    </p>
+  </div>
+  <form
+    className="authForm"
+    onSubmit={[Function]}
+  >
+    <h2
+      className="authHeading"
+    >
+      Welcome back to 
+      <br />
+      <a
+        className="logoText"
+        href="/"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+        onTouchStart={[Function]}
+      >
+        CineCritic
+      </a>
+    </h2>
+    <p
+      className="authDescription"
+    >
+      Sign in to your account.
+    </p>
+    <div
+      className="formInput"
+    >
+      <label
+        className="formLabel"
+        htmlFor="username"
+      >
+        Username
+      </label>
+      <input
+        className="formTextInput"
+        id="username"
+        name="username"
+        onBlur={[Function]}
+        onChange={[Function]}
+        placeholder="JohnDoe"
+        type="text"
+        value=""
+      />
+      <span
+        className="formErrorMessage"
+      />
+    </div>
+    <div
+      className="formInput"
+    >
+      <label
+        className="formLabel"
+        htmlFor="password"
+      >
+        Password
+      </label>
+      <input
+        className="formTextInput"
+        id="password"
+        name="password"
+        onBlur={[Function]}
+        onChange={[Function]}
+        placeholder="•••••••••"
+        type="password"
+        value=""
+      />
+      <span
+        className="formErrorMessage"
+      />
+    </div>
+    <button
+      className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedError MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedError MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth css-dx9gco-MuiButtonBase-root-MuiButton-root"
+      disabled={false}
+      onBlur={[Function]}
+      onContextMenu={[Function]}
+      onDragLeave={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      tabIndex={0}
+      type="submit"
+    >
+      Sign in
+    </button>
+  </form>
+</div>
+`;
