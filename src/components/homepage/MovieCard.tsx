@@ -20,7 +20,16 @@ export default function ActionAreaCard(props: { movie: MoviePreview }) {
     release_date,
     vote_average,
     vote_count,
-  } = props.movie;
+    // } = props.movie;
+  } = {
+    adult: false,
+    overview: "df",
+    poster_path: "",
+    release_date: "",
+    title: "movieTitle",
+    vote_average: 0,
+    vote_count: 0,
+  };
 
   return (
     <Card className={movie.movieCard}>
