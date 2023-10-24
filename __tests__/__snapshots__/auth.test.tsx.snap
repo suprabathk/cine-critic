@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Snapshot testing 1`] = `
+exports[`Auth page tests Snapshot testing 1`] = `
 <div
   className="MuiStack-root css-9gyggb-MuiStack-root"
 >
