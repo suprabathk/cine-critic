@@ -6,8 +6,8 @@ import MovieReview from "@/sections/movie/MovieReview";
 import MoviepageSkeleton from "@/loadingSkeletons/moviepage";
 import MovieInfo from "@/sections/movie/MovieInfo";
 import { isAuth } from "@/utils/auth-utils";
-import useMovieQuery from "@/hooks/useMovieQuery";
-import useReviewsQuery from "@/hooks/useReviewsQuery";
+import { useMovieQuery } from "@/hooks/useMovieQuery";
+import { useReviewsQuery } from "@/hooks/useReviewsQuery";
 
 const MoviePageContent = ({ movieID }: { movieID: string }) => {
   const movieQuery = useMovieQuery(movieID);
@@ -43,12 +43,7 @@ const MoviePage = () => {
   return movieID && authorized ? (
     <MoviePageContent movieID={movieID} />
   ) : (
-    <>
-      <p>
-        movie: {movieID} | isAuth: {isAuth()}
-      </p>
-      <MoviepageSkeleton />
-    </>
+    <MoviepageSkeleton />
   );
 };
 
