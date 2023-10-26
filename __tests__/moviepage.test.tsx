@@ -1,5 +1,5 @@
 import MoviePage from "@/pages/movie/[movieID]";
-import { render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 const dummyTitle = "12345678901234567890123456789012345678901";
@@ -127,8 +127,12 @@ describe("Moviepage tests", () => {
         name: /submit review/i,
       });
 
-      await userEvent.type(reviewTitle, "1234");
-      await userEvent.type(reviewDescription, "1234");
+      // await userEvent.type(reviewTitle, "1234");
+      fireEvent.change(reviewTitle, { target: { value: "1234" } });
+
+      // await userEvent.type(reviewDescription, "1234");
+      fireEvent.change(reviewDescription, { target: { value: "1234" } });
+
       await userEvent.click(reviewRating);
       await userEvent.click(submitButton);
 
@@ -198,7 +202,9 @@ describe("Moviepage tests", () => {
         expect(
           screen.queryByText(/title cannot be more than 40 characters/i)
         ).toBeNull();
-        await userEvent.type(reviewTitle, dummyTitle);
+        // await userEvent.type(reviewTitle, dummyTitle);
+        fireEvent.change(reviewTitle, { target: { value: dummyTitle } });
+
         const submitButton = screen.getByRole("button", {
           name: /submit review/i,
         });
@@ -246,7 +252,11 @@ describe("Moviepage tests", () => {
         expect(
           screen.queryByText(/description cannot be more than 200 characters/i)
         ).toBeNull();
-        await userEvent.type(reviewDescription, dummyDescription);
+        // await userEvent.type(reviewDescription, dummyDescription);
+        fireEvent.change(reviewDescription, {
+          target: { value: dummyDescription },
+        });
+
         const submitButton = screen.getByRole("button", {
           name: /submit review/i,
         });
@@ -294,8 +304,11 @@ describe("Moviepage tests", () => {
         name: /update review/i,
       });
 
-      await userEvent.type(reviewTitle, "1234");
-      await userEvent.type(reviewDescription, "1234");
+      // await userEvent.type(reviewTitle, "1234");
+      // await userEvent.type(reviewDescription, "1234");
+      fireEvent.change(reviewTitle, { target: { value: "1234" } });
+      fireEvent.change(reviewDescription, { target: { value: "1234" } });
+
       await userEvent.click(reviewRating);
       await userEvent.click(submitButton);
 
@@ -343,7 +356,9 @@ describe("Moviepage tests", () => {
         expect(
           screen.queryByText(/title cannot be more than 40 characters/i)
         ).toBeNull();
-        await userEvent.type(reviewTitle, dummyTitle);
+        // await userEvent.type(reviewTitle, dummyTitle);
+        fireEvent.change(reviewTitle, { target: { value: dummyTitle } });
+
         const submitButton = screen.getByRole("button", {
           name: /update review/i,
         });
@@ -396,7 +411,11 @@ describe("Moviepage tests", () => {
           screen.queryByText(/description cannot be more than 200 characters/i)
         ).toBeNull();
         await userEvent.clear(reviewDescription);
-        await userEvent.type(reviewDescription, dummyDescription);
+        // await userEvent.type(reviewDescription, dummyDescription);
+        fireEvent.change(reviewDescription, {
+          target: { value: dummyDescription },
+        });
+
         const submitButton = screen.getByRole("button", {
           name: /update review/i,
         });

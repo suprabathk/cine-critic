@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import SignIn from "@/pages/auth/index";
-import { render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { signIn } from "@/utils/auth-utils";
 
@@ -67,7 +67,8 @@ describe("Auth page tests", () => {
         screen.queryByText(/username should be minimum of 8 characters/i)
       ).toBeNull();
       const usernameInput = screen.getByLabelText(/username/i);
-      await userEvent.type(usernameInput, "123456");
+      // await userEvent.type(usernameInput, "123456");
+      fireEvent.change(usernameInput, { target: { value: "123456" } });
 
       await userEvent.click(submit);
 
@@ -91,7 +92,9 @@ describe("Auth page tests", () => {
       ).toBeNull();
 
       const usernameInput = screen.getByLabelText(/username/i);
-      await userEvent.type(usernameInput, "1234567890#$");
+      // await userEvent.type(usernameInput, "1234567890#$");
+      fireEvent.change(usernameInput, { target: { value: "1234567890#$" } });
+
       await userEvent.click(submit);
       //Calling fucntion after click
       await waitFor(() => {
@@ -130,7 +133,8 @@ describe("Auth page tests", () => {
         screen.queryByText(/password should be minimum of 8 characters/i)
       ).toBeNull();
       const passwordInput = screen.getByLabelText(/password/i);
-      await userEvent.type(passwordInput, "123456");
+      // await userEvent.type(passwordInput, "123456");
+      fireEvent.change(passwordInput, { target: { value: "123456" } });
 
       await userEvent.click(submit);
 
@@ -152,7 +156,8 @@ describe("Auth page tests", () => {
       expect(screen.queryByText(/password cannot contain spaces/i)).toBeNull();
 
       const passwordInput = screen.getByLabelText(/password/i);
-      await userEvent.type(passwordInput, "123456 78");
+      // await userEvent.type(passwordInput, "123456 78");
+      fireEvent.change(passwordInput, { target: { value: "123456 78" } });
 
       await userEvent.click(submit);
       //Calling fucntion after click
@@ -174,8 +179,11 @@ describe("Auth page tests", () => {
     const usernameInput = screen.getByLabelText(/username/i);
     const passwordInput = screen.getByLabelText(/password/i);
 
-    await userEvent.type(usernameInput, "1234567890");
-    await userEvent.type(passwordInput, "1234567890");
+    // await userEvent.type(usernameInput, "1234567890");
+    // await userEvent.type(passwordInput, "1234567890");
+    fireEvent.change(usernameInput, { target: { value: "1234567890" } });
+    fireEvent.change(passwordInput, { target: { value: "1234567890" } });
+
     await userEvent.click(submit);
     //Calling fucntion after click
     await waitFor(() => {
