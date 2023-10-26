@@ -1,5 +1,5 @@
 import MoviePage from "@/pages/movie/[movieID]";
-import { render, screen, waitFor, fireEvent } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 const dummyTitle = "12345678901234567890123456789012345678901";
@@ -101,13 +101,7 @@ describe("Moviepage tests", () => {
       const addReviewButton = screen.getByRole("button", {
         name: /add review/i,
       });
-      fireEvent(
-        addReviewButton,
-        new MouseEvent("click", {
-          bubbles: true,
-          cancelable: true,
-        })
-      );
+      await userEvent.click(addReviewButton);
       await waitFor(() => {
         const addReviewTitle = screen.getByRole("heading", {
           name: /add review/i,
@@ -121,13 +115,7 @@ describe("Moviepage tests", () => {
       const addReviewButton = screen.getByRole("button", {
         name: /add review/i,
       });
-      fireEvent(
-        addReviewButton,
-        new MouseEvent("click", {
-          bubbles: true,
-          cancelable: true,
-        })
-      );
+      await userEvent.click(addReviewButton);
       const reviewTitle = await screen.findByRole("textbox", {
         name: /title/i,
       });
@@ -155,13 +143,7 @@ describe("Moviepage tests", () => {
         const addReviewButton = screen.getByRole("button", {
           name: /add review/i,
         });
-        fireEvent(
-          addReviewButton,
-          new MouseEvent("click", {
-            bubbles: true,
-            cancelable: true,
-          })
-        );
+        await userEvent.click(addReviewButton);
 
         expect(
           screen.queryByRole("heading", {
@@ -190,13 +172,7 @@ describe("Moviepage tests", () => {
         const addReviewButton = screen.getByRole("button", {
           name: /add review/i,
         });
-        fireEvent(
-          addReviewButton,
-          new MouseEvent("click", {
-            bubbles: true,
-            cancelable: true,
-          })
-        );
+        await userEvent.click(addReviewButton);
 
         expect(screen.queryByText(/title is required/i)).toBeNull();
 
@@ -215,13 +191,7 @@ describe("Moviepage tests", () => {
         const addReviewButton = screen.getByRole("button", {
           name: /add review/i,
         });
-        fireEvent(
-          addReviewButton,
-          new MouseEvent("click", {
-            bubbles: true,
-            cancelable: true,
-          })
-        );
+        await userEvent.click(addReviewButton);
         const reviewTitle = await screen.findByRole("textbox", {
           name: /title/i,
         });
@@ -248,13 +218,7 @@ describe("Moviepage tests", () => {
         const addReviewButton = screen.getByRole("button", {
           name: /add review/i,
         });
-        fireEvent(
-          addReviewButton,
-          new MouseEvent("click", {
-            bubbles: true,
-            cancelable: true,
-          })
-        );
+        await userEvent.click(addReviewButton);
 
         expect(screen.queryByText(/description is required/i)).toBeNull();
 

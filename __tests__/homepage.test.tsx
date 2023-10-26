@@ -1,6 +1,7 @@
 import MovieBanner from "@/components/homepage/MovieBanner";
 import ActionAreaCard from "@/components/homepage/MovieCard";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 const dummyMovieData = {
   adult: false,
@@ -34,13 +35,7 @@ describe("Homepage tests", () => {
       const titleText = screen.getByRole("heading", {
         name: /movieTitle/i,
       });
-      fireEvent(
-        titleText,
-        new MouseEvent("click", {
-          bubbles: true,
-          cancelable: true,
-        })
-      );
+      await userEvent.click(titleText);
       await waitFor(() => {
         expect(pushMock).toBeCalledTimes(1);
         expect(pushMock).toBeCalledWith("/movie/0");
@@ -52,13 +47,7 @@ describe("Homepage tests", () => {
     it("Redirect on click", async () => {
       const { container } = render(<ActionAreaCard movie={dummyMovieData} />);
       const movieCard = container.getElementsByClassName("movieCard")[0];
-      fireEvent(
-        movieCard,
-        new MouseEvent("click", {
-          bubbles: true,
-          cancelable: true,
-        })
-      );
+      await userEvent.click(movieCard);
       await waitFor(() => {
         expect(pushMock).toBeCalledTimes(1);
         expect(pushMock).toBeCalledWith("/movie/0");

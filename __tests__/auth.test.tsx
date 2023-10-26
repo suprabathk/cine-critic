@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import SignIn from "@/pages/auth/index";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { signIn } from "@/utils/auth-utils";
 
@@ -49,13 +49,7 @@ describe("Auth page tests", () => {
       //No errors initially
       expect(screen.queryByText(/username is required/i)).toBeNull();
 
-      fireEvent(
-        submit,
-        new MouseEvent("click", {
-          bubbles: true,
-          cancelable: true,
-        })
-      );
+      await userEvent.click(submit);
       //Calling fucntion after click
       await waitFor(() => {
         expect(screen.queryByText(/username is required/i)).toBeInTheDocument();
@@ -75,13 +69,7 @@ describe("Auth page tests", () => {
       const usernameInput = screen.getByLabelText(/username/i);
       await userEvent.type(usernameInput, "123456");
 
-      fireEvent(
-        submit,
-        new MouseEvent("click", {
-          bubbles: true,
-          cancelable: true,
-        })
-      );
+      await userEvent.click(submit);
 
       //Errors after click
       await waitFor(() => {
@@ -104,13 +92,7 @@ describe("Auth page tests", () => {
 
       const usernameInput = screen.getByLabelText(/username/i);
       await userEvent.type(usernameInput, "1234567890#$");
-      fireEvent(
-        submit,
-        new MouseEvent("click", {
-          bubbles: true,
-          cancelable: true,
-        })
-      );
+      await userEvent.click(submit);
       //Calling fucntion after click
       await waitFor(() => {
         expect(
@@ -130,13 +112,7 @@ describe("Auth page tests", () => {
       //No errors initially
       expect(screen.queryByText(/password is required/i)).toBeNull();
 
-      fireEvent(
-        submit,
-        new MouseEvent("click", {
-          bubbles: true,
-          cancelable: true,
-        })
-      );
+      await userEvent.click(submit);
       //Calling fucntion after click
       await waitFor(() => {
         expect(screen.queryByText(/password is required/i)).toBeInTheDocument();
@@ -156,13 +132,7 @@ describe("Auth page tests", () => {
       const passwordInput = screen.getByLabelText(/password/i);
       await userEvent.type(passwordInput, "123456");
 
-      fireEvent(
-        submit,
-        new MouseEvent("click", {
-          bubbles: true,
-          cancelable: true,
-        })
-      );
+      await userEvent.click(submit);
 
       //Errors after click
       await waitFor(() => {
@@ -184,13 +154,7 @@ describe("Auth page tests", () => {
       const passwordInput = screen.getByLabelText(/password/i);
       await userEvent.type(passwordInput, "123456 78");
 
-      fireEvent(
-        submit,
-        new MouseEvent("click", {
-          bubbles: true,
-          cancelable: true,
-        })
-      );
+      await userEvent.click(submit);
       //Calling fucntion after click
       await waitFor(() => {
         expect(
@@ -212,13 +176,7 @@ describe("Auth page tests", () => {
 
     await userEvent.type(usernameInput, "1234567890");
     await userEvent.type(passwordInput, "1234567890");
-    fireEvent(
-      submit,
-      new MouseEvent("click", {
-        bubbles: true,
-        cancelable: true,
-      })
-    );
+    await userEvent.click(submit);
     //Calling fucntion after click
     await waitFor(() => {
       expect(signIn).toBeCalledTimes(1);
