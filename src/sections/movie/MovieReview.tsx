@@ -101,12 +101,17 @@ const MovieReview = ({
             <Card key={review.id} sx={{ borderRadius: "1rem" }}>
               <CardContent>
                 <Box>
-                  <Typography variant="h5" sx={{ wordBreak: "break-word" }}>
+                  <Typography
+                    variant="h5"
+                    component="h5"
+                    sx={{ wordBreak: "break-word" }}
+                  >
                     {review.title}
                   </Typography>
                   <Typography
                     variant="subtitle2"
                     marginBottom="1rem"
+                    component="p"
                     sx={{ wordBreak: "break-word" }}
                   >
                     {review.description}

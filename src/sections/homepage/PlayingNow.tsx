@@ -1,15 +1,11 @@
-import { getNowPlayingMoviesList } from "@/utils/movie-utils";
-import { useQuery } from "@tanstack/react-query";
 import { MoviePreview } from "@/types/movies";
 import { Typography } from "@mui/material";
 import Carousel from "react-material-ui-carousel";
 import MovieBanner from "../../components/homepage/MovieBanner";
+import useNowPlayingQuery from "@/hooks/useNowPlayingQuery";
 
 const PlayingNow = () => {
-  const nowPlayingQuery = useQuery({
-    queryFn: getNowPlayingMoviesList,
-    queryKey: ["nowPlaying"],
-  });
+  const nowPlayingQuery = useNowPlayingQuery();
 
   return (
     <div style={{ width: "100%" }}>

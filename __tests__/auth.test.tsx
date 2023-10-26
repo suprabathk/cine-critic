@@ -7,7 +7,7 @@ import { signIn } from "@/utils/auth-utils";
 
 jest.mock("../src/utils/auth-utils", () => ({
   getAuthToken: jest.fn().mockResolvedValue(""),
-  isAuth: jest.fn().mockResolvedValue(true),
+  isAuth: jest.fn().mockReturnValue(true),
   signIn: jest.fn().mockResolvedValue({ data: { success: true } }),
 }));
 
