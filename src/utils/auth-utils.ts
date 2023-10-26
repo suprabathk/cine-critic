@@ -40,5 +40,13 @@ export const signIn = async (data: {
   }
 };
 
+export const signOut = () => {
+  localStorage.removeItem("authToken");
+  localStorage.removeItem("username");
+};
+
 export const isAuth = () =>
   typeof window !== undefined && !!localStorage.getItem("authToken");
+
+export const getUsername = () =>
+  typeof window !== undefined ? localStorage.getItem("username") : "";

@@ -16,6 +16,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { NewReviewForm } from "../../components/movie/NewReviewForm";
 import { EditReviewForm } from "../../components/movie/EditReviewForm";
+import { getUsername } from "@/utils/auth-utils";
 
 const MovieReview = ({
   movieID,
@@ -39,14 +40,14 @@ const MovieReview = ({
     }: {
       title: string;
       description: string;
-      rating: number;
+      rating: string;
     }) =>
       addReview(movieID, {
         id: `${new Date().getTime()}`,
         title: title,
         description: description,
         rating: rating,
-        username: localStorage.getItem("username") ?? "Anonymus",
+        username: getUsername() ?? "Anonymus",
       }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["reviews", movieID] });
@@ -101,12 +102,17 @@ const MovieReview = ({
             <Card key={review.id} sx={{ borderRadius: "1rem" }}>
               <CardContent>
                 <Box>
-                  <Typography variant="h5" sx={{ wordBreak: "break-word" }}>
+                  <Typography
+                    variant="h5"
+                    component="h5"
+                    sx={{ wordBreak: "break-word" }}
+                  >
                     {review.title}
                   </Typography>
                   <Typography
                     variant="subtitle2"
                     marginBottom="1rem"
+                    component="p"
                     sx={{ wordBreak: "break-word" }}
                   >
                     {review.description}
@@ -120,7 +126,11 @@ const MovieReview = ({
                     justifyContent="space-between"
                     alignItems="center"
                   >
-                    <Rating size="medium" value={review.rating!} readOnly />
+                    <Rating
+                      size="medium"
+                      value={Number.parseInt(review.rating!)}
+                      readOnly
+                    />
                     <Chip icon={<Person />} label={review.username} />
                   </Stack>
 
@@ -132,7 +142,7 @@ const MovieReview = ({
                     gap="0.4rem"
                     marginTop="1rem"
                   >
-                    {review.username === localStorage.getItem("username") && (
+                    {review.username === getUsername() && (
                       <>
                         <Box width={{ xs: "100%", sm: "fit-content" }}>
                           <Button
