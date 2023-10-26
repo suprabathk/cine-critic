@@ -1,6 +1,13 @@
 import MoviePage from "@/pages/movie/[movieID]";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  act,
+} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import renderer from "react-test-renderer";
 
 const dummyTitle = "12345678901234567890123456789012345678901";
 const dummyDescription =
@@ -81,6 +88,14 @@ jest.mock("next/router", () => ({
 }));
 
 describe("Moviepage tests", () => {
+  it("Snapshot testing", async () => {
+    let tree;
+    await act(async () => {
+      tree = renderer.create(<MoviePage />);
+    });
+    expect(tree!.toJSON()).toMatchSnapshot();
+  });
+
   it("Renders reviews", async () => {
     render(<MoviePage />);
     await waitFor(() => {
