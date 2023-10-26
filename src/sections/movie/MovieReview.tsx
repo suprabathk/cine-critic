@@ -40,7 +40,7 @@ const MovieReview = ({
     }: {
       title: string;
       description: string;
-      rating: number;
+      rating: string;
     }) =>
       addReview(movieID, {
         id: `${new Date().getTime()}`,
@@ -126,7 +126,11 @@ const MovieReview = ({
                     justifyContent="space-between"
                     alignItems="center"
                   >
-                    <Rating size="medium" value={review.rating!} readOnly />
+                    <Rating
+                      size="medium"
+                      value={Number.parseInt(review.rating!)}
+                      readOnly
+                    />
                     <Chip icon={<Person />} label={review.username} />
                   </Stack>
 

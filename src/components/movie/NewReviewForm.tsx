@@ -18,7 +18,7 @@ export const NewReviewForm = ({
     initialValues: {
       title: "",
       description: "",
-      rating: 0,
+      rating: "",
     },
     validate(values) {
       const errors: {
@@ -58,7 +58,7 @@ export const NewReviewForm = ({
           <Rating
             size="large"
             name="rating"
-            value={formik.values.rating}
+            value={Number.parseInt(formik.values.rating)}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             getLabelText={(value: number) => `star-${value}`}
