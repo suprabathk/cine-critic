@@ -16,6 +16,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { NewReviewForm } from "../../components/movie/NewReviewForm";
 import { EditReviewForm } from "../../components/movie/EditReviewForm";
+import { getUsername } from "@/utils/auth-utils";
 
 const MovieReview = ({
   movieID,
@@ -46,7 +47,7 @@ const MovieReview = ({
         title: title,
         description: description,
         rating: rating,
-        username: localStorage.getItem("username") ?? "Anonymus",
+        username: getUsername() ?? "Anonymus",
       }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["reviews", movieID] });
@@ -137,7 +138,7 @@ const MovieReview = ({
                     gap="0.4rem"
                     marginTop="1rem"
                   >
-                    {review.username === localStorage.getItem("username") && (
+                    {review.username === getUsername() && (
                       <>
                         <Box width={{ xs: "100%", sm: "fit-content" }}>
                           <Button

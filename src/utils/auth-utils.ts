@@ -47,3 +47,6 @@ export const signOut = () => {
 
 export const isAuth = () =>
   typeof window !== undefined && !!localStorage.getItem("authToken");
+
+export const getUsername = () =>
+  typeof window !== undefined ? localStorage.getItem("username") : "";

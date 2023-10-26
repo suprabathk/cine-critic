@@ -63,6 +63,7 @@ export const EditReviewForm = ({
             value={formik.values.rating}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
+            getLabelText={(value: number) => `star-${value}`}
           />
           <Typography variant="subtitle2" color="red">
             {formik.errors.rating}
