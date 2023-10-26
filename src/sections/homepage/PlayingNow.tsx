@@ -2,7 +2,7 @@ import { MoviePreview } from "@/types/movies";
 import { Typography } from "@mui/material";
 import Carousel from "react-material-ui-carousel";
 import MovieBanner from "../../components/homepage/MovieBanner";
-import useNowPlayingQuery from "@/hooks/useNowPlayingQuery";
+import { useNowPlayingQuery } from "@/hooks/useNowPlayingQuery";
 
 const PlayingNow = () => {
   const nowPlayingQuery = useNowPlayingQuery();

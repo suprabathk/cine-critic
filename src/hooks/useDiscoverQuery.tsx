@@ -1,10 +1,8 @@
 import { getDiscoverList } from "@/utils/movie-utils";
 import { useQuery } from "@tanstack/react-query";
 
-const useDiscoverQuery = () =>
+export const useDiscoverQuery = () =>
   useQuery({
     queryFn: getDiscoverList,
     queryKey: ["discover"],
   });
-
-export default useDiscoverQuery;

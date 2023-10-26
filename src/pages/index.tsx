@@ -4,15 +4,14 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import PlayingNow from "@/sections/homepage/PlayingNow";
 import { HomepageSkeleton } from "@/loadingSkeletons/homepage";
+import { isAuth } from "@/utils/auth-utils";
 
 export default function Home() {
   const router = useRouter();
   const [authorized, setAuthorized] = useState(false);
 
   useEffect(() => {
-    !localStorage.getItem("authToken")
-      ? router.push("/auth")
-      : setAuthorized(true);
+    !isAuth() ? router.push("/auth") : setAuthorized(true);
   }, [router]);
 
   return (
